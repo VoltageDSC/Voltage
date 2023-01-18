@@ -1,0 +1,47 @@
+.voltage-settings-tab {
+    margin-top: 20px;
+    margin-bottom: -2px;
+    border-bottom: 0px solid transparent;
+}
+
+.voltage-settings-title {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 600;
+}
+
+.voltage-settings-tabItem {
+    margin-right: 32px;
+    padding-bottom: 16px;
+    margin-bottom: -2px;
+}
+
+.voltage-settings-actions {
+    padding: 1em;
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    flex-direction: row;
+    margin-bottom: 1em;
+}
+
+.voltage-settings-donate {
+    display: flex;
+    flex-direction: row;
+}
+
+.voltage-settings-card {
+    padding: 1em;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+.voltage-backup-restore {
+    background-color: var(--info-warning-background);
+    border-color: transparent;
+    color: var(--info-warning-text);
+    margin-top: 0;
+}

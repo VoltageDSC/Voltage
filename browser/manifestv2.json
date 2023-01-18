@@ -1,0 +1,25 @@
+{
+    "manifest_version": 2,
+    "name": "Voltage Web",
+    "description": "A lightweight client mod focused on being better with themes.",
+    "version": "1.0.0",
+    "author": "Zach J Murphy",
+    "homepage_url": "https://codeberg.org/Voltage/Voltage",
+    "permissions": [
+        "webRequest",
+        "webRequestBlocking",
+        "*://*.discord.com/*",
+        "https://raw.githubusercontent.com/*"
+    ],
+    "content_scripts": [
+        {
+            "run_at": "document_start",
+            "matches": ["*://*.discord.com/*"],
+            "js": ["content.js"]
+        }
+    ],
+    "web_accessible_resources": ["dist/Voltage.js", "dist/Voltage.css"],
+    "background": {
+        "scripts": ["background.js"]
+    }
+}

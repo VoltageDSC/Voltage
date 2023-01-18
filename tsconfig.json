@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "lib": [
+            "DOM",
+            "esnext",
+            "esnext.array",
+            "esnext.asynciterable",
+            "esnext.symbol"
+        ],
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "strict": true,
+        "noImplicitAny": false,
+        "target": "ESNEXT",
+        "jsx": "preserve",
+
+        "baseUrl": "./src/",
+        "paths": {
+            "@webpack": ["./voltage/webpack"],
+            "@webpack/common": ["./voltage/webpack/common"],
+            "@utils/*": ["./voltage/utils/*"],
+            "@api/*": ["./core/api/*"],
+            "@components/*": ["./voltage/components/*"],
+            "@types": ["./types"],
+            "@constants": ["./constants"]
+        }
+    },
+    "include": ["src/**/*"]
+}

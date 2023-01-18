@@ -1,0 +1,182 @@
+.voltage-spotify-player {
+    padding: 0.375rem 0.5rem;
+    border-bottom: 0px solid transparent;
+    --spotify-color: #1db954;
+}
+
+.voltage-spotify-button {
+    background: none;
+    color: var(--interactive-normal);
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.voltage-spotify-button:hover {
+    color: var(--interactive-hover);
+    background-color: var(--background-modifier-selected);
+}
+
+.voltage-spotify-button svg {
+    height: 24px;
+    width: 24px;
+}
+
+[class*="voltage-spotify-repeat"]>svg,
+[class*="voltage-spotify-shuffle"]>svg {
+    width: 22px;
+    height: 22px;
+}
+
+.voltage-spotify-button svg path {
+    width: 100%;
+    height: 100%;
+}
+
+.voltage-spotify-shuffle-on,
+.voltage-spotify-repeat-track,
+.voltage-spotify-repeat-context,
+.voltage-spotify-shuffle-on:hover,
+.voltage-spotify-repeat-track:hover,
+.voltage-spotify-repeat-context:hover {
+    color: var(--spotify-color);
+}
+
+.voltage-spotify-tooltip-text {
+    overflow: hidden;
+    white-space: nowrap;
+    padding-right: 0.2em;
+    max-width: 100%;
+}
+
+.voltage-spotify-repeat-1 {
+    font-size: 70%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.voltage-spotify-button-row {
+    justify-content: center;
+}
+
+.voltage-spotify-info-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 3em;
+    gap: 0.5em;
+}
+
+.voltage-spotify-info-wrapper img {
+    height: 90%;
+    object-fit: contain;
+}
+
+.voltage-spotify-album-expanded-wrapper img {
+    width: 100%;
+    object-fit: contain;
+}
+
+.voltage-spotify-titles {
+    display: flex;
+    flex-direction: column;
+    padding: 0.2rem;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: flex-start;
+    overflow: hidden;
+}
+
+.voltage-spotify-tooltip-text {
+    margin: unset;
+}
+
+#voltage-spotify-song-title {
+    color: var(--header-primary);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.voltage-spotify-ellipoverflow {
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    text-overflow: ellipsis;
+}
+
+.voltage-spotify-album,
+.voltage-spotify-artist {
+    font-size: 12px;
+    text-decoration: none;
+    color: var(--header-secondary);
+}
+
+.voltage-spotify-comma {
+    color: var(--header-secondary);
+}
+
+.voltage-spotify-artist:hover,
+#voltage-spotify-album-title:hover,
+#voltage-spotify-song-title[role="link"]:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.voltage-spotify-album-image {
+    border-radius: 3px;
+}
+
+.voltage-spotify-album-image:hover {
+    filter: brightness(1.2);
+    cursor: pointer;
+}
+
+.voltage-spotify-progress-bar {
+    position: relative;
+    color: var(--text-normal);
+    width: 100%;
+    margin: 0.5em 0;
+    margin-bottom: 5px;
+}
+
+.voltage-spotify-progress-bar>[class^="slider"] {
+    flex-grow: 1;
+    width: 100%;
+    padding: 0 !important;
+}
+
+.voltage-spotify-progress-bar>[class^="slider"] [class^="bar-"] {
+    height: 4px !important;
+}
+
+.voltage-spotify-progress-bar>[class^="slider"] [class^="grabber"] {
+    height: 10px !important;
+    width: 10px !important;
+    background-color: var(--interactive-normal);
+    border-color: var(--interactive-normal);
+    color: var(--interactive-normal);
+}
+
+#voltage-spotify-progress-text {
+    margin: 0;
+}
+
+.voltage-spotify-progress-time {
+    font-size: 12px;
+    top: 10px;
+    position: absolute;
+}
+
+.voltage-spotify-time-left {
+    left: 0;
+}
+
+.voltage-spotify-time-right {
+    right: 0;
+}
