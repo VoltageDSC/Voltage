@@ -86,7 +86,7 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
 
     function renderSettings() {
         if (!hasSettings || !plugin.options) {
-            return <Forms.FormText>No Settingd Available</Forms.FormText>;
+            return <Forms.FormText>No Settings Available</Forms.FormText>;
         } else {
             const options = Object.entries(plugin.options).map(([key, setting]) => {
                 function onChange(newValue: any) {
