@@ -16,6 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+import * as $Badges from "./Badges";
 import * as $DataStore from "./Data";
 import * as $MessageEventsAPI from "./MessageEvents";
 import * as $Notices from "./Notices";
@@ -48,6 +49,10 @@ export const Notices = $Notices;
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm#supported_types}
  */
 export const DataStore = $DataStore;
+/**
+ * An API allowing you to add badges to user profiles
+ */
+export const Badges = $Badges;
 /**
  * An API allowing you to dynamically load styles
  * a

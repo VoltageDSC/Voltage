@@ -27,5 +27,9 @@ export const Devs = /* #__PURE__*/ Object.freeze({
     Zach: {
         name: "Zach",
         id: 0n
+    },
+    Sappy: {
+        name: "Sappy",
+        id: 741262207391629343n
     }
 });
