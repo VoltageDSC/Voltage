@@ -38,7 +38,7 @@ See [Contributing](https://codeberg.org/Voltage/Voltage/src/branch/main/.gitea/c
 ## Support
 
 - [Codeberg Issues](https://codeberg.org/Voltage/Voltage/issues)
-- [Discord Server](https://discord.gg/example)
+- [Discord Server](https://discord.gg/4NfTZPUCMT)
 
 ## License
 
