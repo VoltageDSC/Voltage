@@ -27,7 +27,7 @@ import { Router } from "@webpack/common";
 const SettingsComponent = LazyComponent(() => require("../components/settings").default);
 
 export default definePlugin({
-    name: "Settings UI",
+    name: "Settings",
     description: "Implements the Settings UI",
     authors: [Devs.Zach],
     required: true,
@@ -35,7 +35,7 @@ export default definePlugin({
         find: "Messages.ACTIVITY_SETTINGS",
         replacement: {
             get match() {
-                switch (Settings.plugins["Settings UI"].settingsLocation) {
+                switch (Settings.plugins.Settings.settingsLocation) {
                     case "top": return /\{section:(.{1,2})\.ID\.HEADER,\s*label:(.{1,2})\..{1,2}\.Messages\.USER_SETTINGS\}/;
                     case "aboveNitro": return /\{section:(.{1,2})\.ID\.HEADER,\s*label:(.{1,2})\..{1,2}\.Messages\.BILLING_SETTINGS\}/;
                     case "belowNitro": return /\{section:(.{1,2})\.ID\.HEADER,\s*label:(.{1,2})\..{1,2}\.Messages\.APP_SETTINGS\}/;
@@ -62,20 +62,20 @@ export default definePlugin({
                 section: ID.HEADER,
                 label: "Voltage"
             }, {
-                section: "Settings",
+                section: "VoltageSettings",
                 label: "Settings",
-                element: () => <SettingsComponent tab="Settings" />,
-                onClick: makeOnClick("Settings")
+                element: () => <SettingsComponent tab="VoltageSettings" />,
+                onClick: makeOnClick("VoltageSettings")
             }, {
-                section: "Plugins",
+                section: "VoltagePlugins",
                 label: "Plugins",
-                element: () => <SettingsComponent tab="Plugins" />,
-                onClick: makeOnClick("Plugins")
+                element: () => <SettingsComponent tab="VoltagePlugins" />,
+                onClick: makeOnClick("VoltagePlugins")
             }, {
-                section: "Themes",
+                section: "VoltageThemes",
                 label: "Themes",
-                element: () => <SettingsComponent tab="Themes" />,
-                onClick: makeOnClick("Themes")
+                element: () => <SettingsComponent tab="VoltageThemes" />,
+                onClick: makeOnClick("VoltageThemes")
             }
         ] as Array<{
             section: unknown,
@@ -86,25 +86,25 @@ export default definePlugin({
 
         if (!IS_WEB)
             cats.push({
-                section: "Updater",
+                section: "VoltageUpdater",
                 label: "Updater",
-                element: () => <SettingsComponent tab="Updater" />,
-                onClick: makeOnClick("Updater")
+                element: () => <SettingsComponent tab="VoltageUpdater" />,
+                onClick: makeOnClick("VoltageUpdater")
             });
 
         cats.push({
-            section: "SettingsSync",
+            section: "VoltageSettingsSync",
             label: "Backup & Restore",
-            element: () => <SettingsComponent tab="SettingsSync" />,
-            onClick: makeOnClick("SettingsSync")
+            element: () => <SettingsComponent tab="VoltageSettingsSync" />,
+            onClick: makeOnClick("VoltageSettingsSync")
         });
 
         if (IS_DEV)
             cats.push({
-                section: "PatchHelper",
+                section: "VoltagePatchHelper",
                 label: "Patch Helper",
                 element: PatchHelper!,
-                onClick: makeOnClick("PatchHelper")
+                onClick: makeOnClick("VoltagePatchHelper")
             });
 
         cats.push({ section: ID.DIVIDER });
@@ -115,24 +115,24 @@ export default definePlugin({
     options: {
         settingsLocation: {
             type: OptionType.SELECT,
-            description: "Where do you want the Voltage Settings to be located?",
+            description: "Where to put the Voltage settings section",
             options: [
-                { label: "Very Top", value: "top" },
-                { label: "Above Nitro Section", value: "aboveNitro" },
-                { label: "Below Nitro Section", value: "belowNitro" },
+                { label: "At the very top", value: "top" },
+                { label: "Above the Nitro section", value: "aboveNitro" },
+                { label: "Below the Nitro section", value: "belowNitro" },
                 { label: "Above Activity Settings", value: "aboveActivity", default: true },
                 { label: "Below Activity Settings", value: "belowActivity" },
-                { label: "Very Bottom", value: "bottom" },
+                { label: "At the very bottom", value: "bottom" },
             ],
             restartNeeded: true
         },
     },
 
     tabs: {
-        settings: () => <SettingsComponent tab="Settings" />,
-        plugins: () => <SettingsComponent tab="Plugins" />,
-        themes: () => <SettingsComponent tab="Themes" />,
-        updater: () => <SettingsComponent tab="Updater" />,
-        sync: () => <SettingsComponent tab="SettingsSync" />
-    }
+        settings: () => <SettingsComponent tab="VoltageSettings" />,
+        plugins: () => <SettingsComponent tab="VoltagePlugins" />,
+        themes: () => <SettingsComponent tab="VoltageThemes" />,
+        updater: () => <SettingsComponent tab="VoltageUpdater" />,
+        sync: () => <SettingsComponent tab="VoltageSettingsSync" />
+    },
 });

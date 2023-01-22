@@ -54,7 +54,7 @@ async function init() {
                         "View Update",
                         () => {
                             popNotice();
-                            Router.open("Updater");
+                            Router.open("VoltageUpdater");
                         }
                     );
                 }, 10000);

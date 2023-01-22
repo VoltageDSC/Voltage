@@ -43,17 +43,17 @@ interface SettingsTab {
 }
 
 const SettingsTabs: Record<string, SettingsTab> = {
-    Settings: { name: "Settings", component: () => <VoltageTab /> },
-    Plugins: { name: "Plugins", component: () => <PluginsTab /> },
-    Themes: { name: "Themes", component: () => <ThemesTab /> },
-    Updater: { name: "Updater" },
-    SettingsSync: { name: "Backup & Restore", component: () => <BackupRestoreTab /> },
+    VoltageSettings: { name: "Settings", component: () => <VoltageTab /> },
+    VoltagePlugins: { name: "Plugins", component: () => <PluginsTab /> },
+    VoltageThemes: { name: "Themes", component: () => <ThemesTab /> },
+    VoltageUpdater: { name: "Updater" },
+    VoltageSettingsSync: { name: "Backup & Restore", component: () => <BackupRestoreTab /> },
 };
 
-if (!IS_WEB) SettingsTabs.Updater.component = () => Updater && <Updater />;
+if (!IS_WEB) SettingsTabs.VoltageUpdater.component = () => Updater && <Updater />;
 
 function Settings(props: SettingsProps) {
-    const { tab = "Settings" } = props;
+    const { tab = "VoltageSettings" } = props;
 
     const CurrentTab = SettingsTabs[tab]?.component;
 
