@@ -62,7 +62,7 @@ export interface PluginDef {
     /**
      * A list of other plugins that your plugin depends on.
      * These will automatically be enabled and loaded before your plugin
-     * Common examples are CommandsAPI, MessageEventsAPI...
+     * Common examples are Commands API, Message Events API...
      */
     dependencies?: string[],
     /**
