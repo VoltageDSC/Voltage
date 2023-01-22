@@ -44,6 +44,13 @@ ${p.description}
 
 **Authors**: ${p.authors.map(a => a.name).join(", ")}
 `;
+
+        if (p.commands?.length) {
+            list += "\n\n#### Commands\n";
+            for (const cmd of p.commands) {
+                list += `${cmd.name} - ${cmd.description}\n\n`;
+            }
+        }
         list += "\n\n";
     }
 

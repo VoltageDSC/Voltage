@@ -65,7 +65,7 @@ function createTagCommand(tag: Tag) {
                 return { content: `/${tag.name}` };
             }
 
-            if (Settings.plugins.MessageTags.clyde) sendBotMessage(ctx.channel.id, {
+            if (Settings.plugins["Message Tags"].clyde) sendBotMessage(ctx.channel.id, {
                 author,
                 content: `${EMOTE} The tag **${tag.name}** has been sent!`
             });

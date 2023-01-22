@@ -16,12 +16,18 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+import { generateId } from "@api/Commands";
 import { useSettings } from "@api/Settings";
 import ErrorBoundary from "@components/errors/ErrorBoundary";
 import { Flex } from "@components/Flex";
 import { OptionType, Plugin } from "@types";
+import { LazyComponent } from "@utils/Misc";
 import { ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalProps, ModalRoot, ModalSize } from "@utils/Modal";
-import { Button, Forms, React, Text, Tooltip } from "@webpack/common";
+import { proxyLazy } from "@utils/ProxyLazy";
+import { findByCode, findByPropsLazy } from "@webpack";
+import { Button, FluxDispatcher, Forms, React, Text, Tooltip, UserStore, UserUtils } from "@webpack/common";
+import { User } from "discord-types/general";
+import { Constructor } from "type-fest";
 
 import {
     ISettingElementProps,
@@ -33,9 +39,26 @@ import {
     SettingTextComponent
 } from "./components";
 
+const UserSummaryItem = LazyComponent(() => findByCode("defaultRenderUser", "showDefaultAvatarsForNullUsers"));
+const AvatarStyles = findByPropsLazy("moreUsers", "emptyUser", "avatarContainer", "clickableAvatar");
+const UserRecord: Constructor<Partial<User>> = proxyLazy(() => UserStore.getCurrentUser().constructor) as any;
+
 interface PluginModalProps extends ModalProps {
     plugin: Plugin;
     onRestartNeeded(): void;
+}
+
+function makeDummyUser(user: { name: string, id: BigInt; }) {
+    const newUser = new UserRecord({
+        username: user.name,
+        id: generateId(),
+        bot: true,
+    });
+    FluxDispatcher.dispatch({
+        type: "USER_UPDATE",
+        user: newUser,
+    });
+    return newUser;
 }
 
 const Components: Record<OptionType, React.ComponentType<ISettingElementProps<any>>> = {
@@ -49,6 +72,8 @@ const Components: Record<OptionType, React.ComponentType<ISettingElementProps<an
 };
 
 export default function PluginModal({ plugin, onRestartNeeded, onClose, transitionState }: PluginModalProps) {
+    const [authors, setAuthors] = React.useState<Partial<User>[]>([]);
+
     const pluginSettings = useSettings().plugins[plugin.name];
     const [tempSettings, setTempSettings] = React.useState<Record<string, any>>({});
 
@@ -58,6 +83,17 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
     const canSubmit = () => Object.values(errors).every(e => !e);
 
     const hasSettings = Boolean(pluginSettings && plugin.options);
+
+    React.useEffect(() => {
+        (async () => {
+            for (const user of plugin.authors.slice(0, 6)) {
+                const author = user.id
+                    ? await UserUtils.fetchUser(`${user.id}`).catch(() => makeDummyUser(user))
+                    : makeDummyUser(user);
+                setAuthors(a => [...a, author]);
+            }
+        })();
+    }, []);
 
     async function saveAndClose() {
         if (!plugin.options) {
@@ -115,6 +151,26 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
         }
     }
 
+    function renderMoreUsers(_label: string, count: number) {
+        const sliceCount = plugin.authors.length - count;
+        const sliceStart = plugin.authors.length - sliceCount;
+        const sliceEnd = sliceStart + plugin.authors.length - count;
+
+        return (
+            <Tooltip text={plugin.authors.slice(sliceStart, sliceEnd).map(u => u.name).join(", ")}>
+                {({ onMouseEnter, onMouseLeave }) => (
+                    <div
+                        className={AvatarStyles.moreUsers}
+                        onMouseEnter={onMouseEnter}
+                        onMouseLeave={onMouseLeave}
+                    >
+                        +{sliceCount}
+                    </div>
+                )}
+            </Tooltip>
+        );
+    }
+
     return (
         <ModalRoot transitionState={transitionState} size={ModalSize.MEDIUM}>
             <ModalHeader separator={false}>
@@ -125,6 +181,19 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
                 <Forms.FormSection>
                     <Forms.FormTitle tag="h3">About {plugin.name}</Forms.FormTitle>
                     <Forms.FormText>{plugin.description}</Forms.FormText>
+                    <Forms.FormTitle tag="h3" style={{ marginTop: 8, marginBottom: 0 }}>Authors</Forms.FormTitle>
+                    <div style={{ width: "fit-content", marginBottom: 8 }}>
+                        <UserSummaryItem
+                            users={authors}
+                            count={plugin.authors.length}
+                            guildId={undefined}
+                            renderIcon={false}
+                            max={6}
+                            showDefaultAvatarsForNullUsers
+                            showUserPopout
+                            renderMoreUsers={renderMoreUsers}
+                        />
+                    </div>
                 </Forms.FormSection>
                 {!!plugin.settingsAboutComponent && (
                     <div style={{ marginBottom: 8 }}>

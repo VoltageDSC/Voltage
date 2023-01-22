@@ -16,6 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+import { Command } from "@api/Commands";
 import type { ReplaceFn } from "@utils/Patches";
 import { Promisable } from "type-fest";
 
@@ -59,6 +60,10 @@ export interface PluginDef {
     start?(): void;
     stop?(): void;
     patches?: Omit<Patch, "plugin">[];
+    /**
+     * List of commands. If you specify these, you must add CommandsAPI to dependencies
+     */
+    commands?: Command[];
     /**
      * A list of other plugins that your plugin depends on.
      * These will automatically be enabled and loaded before your plugin

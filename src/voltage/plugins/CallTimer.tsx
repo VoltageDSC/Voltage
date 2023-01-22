@@ -23,14 +23,12 @@ import definePlugin, { OptionType } from "@types";
 import { React } from "@webpack/common";
 
 function formatDuration(ms: number) {
-    // here be dragons (moment fucking sucks)
-    const human = Settings.plugins.CallTimer.format === "human";
+    const human = Settings.plugins["Call Timer"].format === "human";
 
     const format = (n: number) => human ? n : n.toString().padStart(2, "0");
     const unit = (s: string) => human ? s : "";
     const delim = human ? " " : ":";
 
-    // thx copilot
     const d = Math.floor(ms / 86400000);
     const h = Math.floor((ms % 86400000) / 3600000);
     const m = Math.floor(((ms % 86400000) % 3600000) / 60000);

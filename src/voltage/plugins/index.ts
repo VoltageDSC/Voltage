@@ -16,6 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+import { registerCommand, unregisterCommand } from "@api/Commands";
 import { Settings } from "@api/Settings";
 import { Patch, Plugin } from "@types";
 import Logger from "@utils/Logger";
@@ -121,6 +122,20 @@ export const startPlugin = traceFunction("startPlugin", function startPlugin(p: 
             return false;
         }
     }
+
+    if (p.commands?.length) {
+        logger.info("Registering commands of plugin", p.name);
+        for (const cmd of p.commands) {
+            try {
+                registerCommand(cmd, p.name);
+            } catch (e) {
+                logger.error(`Failed to register command ${cmd.name}\n`, e);
+                return false;
+            }
+        }
+
+    }
+
     return true;
 }, p => `startPlugin ${p.name}`);
 
@@ -139,5 +154,18 @@ export const stopPlugin = traceFunction("stopPlugin", function stopPlugin(p: Plu
             return false;
         }
     }
+
+    if (p.commands?.length) {
+        logger.info("Unregistering commands of plugin", p.name);
+        for (const cmd of p.commands) {
+            try {
+                unregisterCommand(cmd.name);
+            } catch (e) {
+                logger.error(`Failed to unregister command ${cmd.name}\n`, e);
+                return false;
+            }
+        }
+    }
+
     return true;
 }, p => `stopPlugin ${p.name}`);
