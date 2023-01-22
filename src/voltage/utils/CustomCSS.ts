@@ -29,10 +29,10 @@ export async function toggle(isEnabled: boolean) {
             style = document.createElement("style");
             style.id = "voltage-custom-css";
             document.head.appendChild(style);
-            VoltageNative.ipc.on(IpcEvents.CUSTOM_CSS_UPDATE, (_, css: string) => style.innerText = css);
+            VoltageNative.ipc.on(IpcEvents.CUSTOM_CSS_UPDATE, (_, css: string) => style.textContent = css);
             style.textContent = await VoltageNative.ipc.invoke(IpcEvents.GET_CUSTOM_CSS);
         }
-    } else // @ts-ignore
+    } else
         style.disabled = !isEnabled;
 }
 

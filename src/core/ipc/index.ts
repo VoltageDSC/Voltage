@@ -76,7 +76,7 @@ ipcMain.handle(IpcEvents.SET_SETTINGS, (_, s) => {
 export function initIpc(mainWindow: BrowserWindow) {
     open(CUSTOMCSS_PATH, "a+").then(fd => {
         fd.close();
-        watch(CUSTOMCSS_PATH, debounce(async () => {
+        watch(CUSTOMCSS_PATH, { persistent: false }, debounce(async () => {
             mainWindow.webContents.postMessage(IpcEvents.CUSTOM_CSS_UPDATE, await readCss());
         }, 50));
     });
