@@ -45,3 +45,94 @@
     color: var(--info-warning-text);
     margin-top: 0;
 }
+
+/*   Official Assets   */
+:root {
+    --Banner-Header-Height: block;
+    --Banner-Header-Padding: 16px;
+    --Banner-Header-Box-Shadow: revert;
+
+    --Banner-Server-Banner: block;
+    --Banner-Server-Width: block;
+    --Banner-Server-Height: block;
+    --Banner-Server-Top: block;
+    --Banner-Server-Left: block;
+    --Banner-Server-Z-Index: block;
+    --Banner-Server-Position: block;
+}
+
+.container-1NXEtd .header-3OsQeK {
+    height: var(--Banner-Header-Height);
+    padding: var(--Banner-Header-Padding);
+    box-shadow: var(--Banner-Header-Box-Shadow);
+    align-items: flex-start;
+}
+
+.container-1NXEtd .header-3OsQeK::before {
+    content: "";
+    position: var(--Banner-Server-Position);
+    top: var(--Banner-Server-Top);
+    left: var(--Banner-Server-Left);
+    z-index: var(--Banner-Server-Z-Index);
+    width: var(--Banner-Server-Width);
+    height: var(--Banner-Server-Height);
+    background: var(--Banner-Server-Banner) center/cover no-repeat;
+}
+
+/*   Voltage - Banner   */
+[aria-label="Voltage (server)"] {
+    --Banner-Header-Height: 150px !important;
+    --Banner-Header-Padding: 16px !important;
+    --Banner-Header-Box-Shadow: none !important;
+
+    --Banner-Server-Banner: url('https://sappy.gq/Banner.png') !important;
+    --Banner-Server-Width: 100% !important;
+    --Banner-Server-Height: 100% !important;
+    --Banner-Server-Top: 0 !important;
+    --Banner-Server-Left: 0 !important;
+    --Banner-Server-Z-Index: -1 !important;
+    --Banner-Server-Position: absolute !important;
+}
+
+/*   Voltage - Badge   */
+[aria-label="Voltage (server)"] .container-1-ERn5 .header-3OsQeK .name-3Uvkvr::before {
+    content: "";
+    background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjEiIHZpZXdCb3g9IjAgMCA2MCA2MSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik01OS45OTk5IDMwLjU1NDdDNTkuOTk5OSAzMy41MTM3IDU1LjE5OTkgMzUuNzIzNSA1NC4yOTk5IDM4LjM4MjhDNTMuMzk5OSA0MS4wNDIgNTUuOTQ5OSA0NS44NzM3IDU0LjI5OTkgNDguMDgzNUM1Mi42NDk5IDUwLjI5MzMgNDcuNCA0OS4zOTQ0IDQ1LjA3NSA1MS4wNzk4QzQyLjc1IDUyLjc2NTMgNDIuMTEyNSA1Ny45NzE1IDM5LjMgNTguOTA3OUMzNi40ODc1IDU5Ljg0NDIgMzMuMDM3NSA1NS45MTE1IDMwLjAzNzUgNTUuOTExNUMyNy4wMzc1IDU1LjkxMTUgMjMuNDc1IDU5LjY1NjkgMjAuNzc1IDU4LjkwNzlDMTguMDc1IDU4LjE1ODggMTcuMzI1IDUyLjc2NTMgMTUgNTEuMDc5OEMxMi42NzUgNDkuMzk0NCA3LjQ5OTk5IDUwLjQwNTcgNS43NzQ5OSA0OC4wODM1QzQuMDUgNDUuNzYxMyA2LjYzNzQ5IDQxLjE5MTggNS43NzQ5OSAzOC4zODI4QzQuOTEyNDkgMzUuNTczNyAwIDMzLjUxMzcgMCAzMC41NTQ3QzAgMjcuNTk1OCA0Ljc5OTk5IDI1LjM4NiA1LjY5OTk5IDIyLjcyNjdDNi41OTk5OSAyMC4wNjc1IDQuMDUgMTUuMjM1OCA1LjY5OTk5IDEzLjAyNkM3LjM0OTk5IDEwLjgxNjIgMTIuNjM3NSAxMS43MTUxIDE1IDEwLjAyOTdDMTcuMzYyNSA4LjM0NDIgMTcuOTI1IDMuMTM4MDEgMjAuNzM3NSAyLjA4OTI5QzIzLjU1IDEuMDQwNTYgMjcgNS4xOTgwMSAzMCA1LjE5ODAxQzMzIDUuMTk4MDEgMzYuNTYyNSAxLjQ1MjU2IDM5LjI2MjUgMi4yMDE2NUM0MS45NjI1IDIuOTUwNzQgNDIuNjc1IDguMzQ0MiA0NSAxMC4wMjk3QzQ3LjMyNSAxMS43MTUxIDUyLjQ5OTkgMTAuNzAzOCA1NC4yMjQ5IDEzLjAyNkM1NS45NDk5IDE1LjM0ODIgNTMuMzYyNCAxOS45MTc3IDU0LjIyNDkgMjIuNzI2N0M1NS4wODc0IDI1LjUzNTggNTkuOTk5OSAyNy41OTU4IDU5Ljk5OTkgMzAuNTU0N1oiIGZpbGw9IiM0RjU0NUMiLz4KPHBhdGggZD0iTTI4LjMxODkgNDQuMjcyM0wxNS42NjI2IDM0LjcwMTJMMTkuMzg1MSAyOS41OTY2TDI2LjgyOTkgMzUuMzM5M0w0MC4zNzk1IDE3LjM2MDZMNDUuNDQyIDIxLjExNEwyOC4zMTg5IDQ0LjI3MjNaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K') center/100% no-repeat;
+    padding: 1px 8px 0px 8px;
+    margin-right: 6px;
+}
+
+[aria-label="Voltage (server)"] .container-1-ERn5 .header-3OsQeK .name-3Uvkvr:hover::after {
+    content: "Official Server";
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    max-width: 190px;
+    position: absolute;
+    background-color: var(--background-floating);
+    padding: 8px 12px;
+    border-radius: 5px;
+    opacity: 1;
+    display: block;
+    animation: tooltip .5s forwards;
+}
+
+[aria-label="Voltage (server)"] .guildIconContainer-3QvE6w {
+    display: none !important;
+}
+
+@keyframes tooltip {
+    from {
+        left: 5px;
+        top: 35px;
+        opacity: 0;
+        display: none;
+    }
+
+    to {
+        left: 10px;
+        top: 40px;
+        opacity: 1;
+        display: block;
+    }
+}
