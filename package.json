@@ -1,6 +1,6 @@
 {
     "name": "voltage",
-    "private": "false",
+    "private": "true",
     "version": "1.0.1",
     "description": "A lightweight client mod focused on being better with themes.",
     "keywords": [],
