@@ -155,7 +155,7 @@ function PluginCard({ plugin, disabled, onRestartNeeded, onMouseEnter, onMouseLe
                     {plugin.name}
                 </Text>
                 <button role="switch" onClick={() => openModal()} className={classes("button-12Fmur", cl("info-button"))}>
-                    {plugin.settings
+                    {plugin.options
                         ? <CogWheel />
                         : <InfoIcon width="24" height="24" />}
                 </button>
