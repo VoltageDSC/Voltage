@@ -1,0 +1,24 @@
+name: Blank Template
+description: Use this only if your issue does not fit into another template.
+labels: []
+
+body:
+  - type: textarea
+    id: info-sec
+    attributes:
+      label: Tell us all about it.
+      description: Go nuts, let us know what you're wanting to bring attention to.
+      placeholder: ...
+    validations:
+      required: true
+
+  - type: checkboxes
+    attributes:
+    label: Request Agreement
+    options:
+    - label: I have searched the issue tracker and did not find an issue describing my request, especially not one that has been rejected.
+      required: true
+
+  - type: textarea
+    attributes:
+      label: You may use the editor below to elaborate further.

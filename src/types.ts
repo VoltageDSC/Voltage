@@ -230,7 +230,7 @@ type SettingsStore<D extends SettingsDefinition> = {
 
 /** An instance of defined plugin settings */
 export interface DefinedSettings<D extends SettingsDefinition = SettingsDefinition, C extends SettingsChecks<D> = {}> {
-    /** Shorthand for `Vencord.Settings.plugins.PluginName`, but with typings */
+    /** Shorthand for `Voltage.Settings.plugins.PluginName`, but with typings */
     store: SettingsStore<D>;
     /**
      * React hook for getting the settings for this plugin
