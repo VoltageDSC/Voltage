@@ -26,7 +26,7 @@ export const VOLTAGE_USER_AGENT = `Voltage/${gitHash}${gitRemote ? ` (https://co
 export const Devs = /* #__PURE__*/ Object.freeze({
     Zach: {
         name: "Zach",
-        id: 0n
+        id: 419788419095330826n
     },
     Sappy: {
         name: "Sappy",
