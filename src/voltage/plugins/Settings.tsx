@@ -17,10 +17,12 @@
 */
 
 import { Settings } from "@api/Settings";
+import PatchHelper from "@components/patcher/PatchHelper";
 import { Devs } from "@constants";
 import definePlugin, { OptionType } from "@types";
 import Logger from "@utils/Logger";
 import { LazyComponent } from "@utils/Misc";
+import { Router } from "@webpack/common";
 
 const SettingsComponent = LazyComponent(() => require("../components/settings").default);
 
@@ -48,22 +50,67 @@ export default definePlugin({
                     }
                 }
             },
-            replace: (m, mod) => {
-                const updater = !IS_WEB ? '{section:"Updater",label:"Updater",element:Voltage.Plugins.plugins["Settings UI"].tabs.updater},' : "";
-                const patchHelper = IS_DEV ? '{section:"VoltagePatchHelper",label:"Patch Helper",element:Voltage.Components.PatchHelper},' : "";
-                return (
-                    `{section:${mod}.ID.HEADER,label:"Voltage"},` +
-                    '{section:"Settings",label:"Settings",element:Voltage.Plugins.plugins["Settings UI"].tabs.settings},' +
-                    '{section:"Plugins",label:"Plugins",element:Voltage.Plugins.plugins["Settings UI"].tabs.plugins},' +
-                    '{section:"Themes",label:"Themes",element:Voltage.Plugins.plugins["Settings UI"].tabs.themes},' +
-                    updater +
-                    '{section:"SettingsSync",label:"Backup & Restore",element:Voltage.Plugins.plugins["Settings UI"].tabs.sync},' +
-                    patchHelper +
-                    `{section:${mod}.ID.DIVIDER},${m}`
-                );
-            }
+            replace: "...$self.makeSettingsCategories($1),$&"
         }
     }],
+
+    makeSettingsCategories({ ID }: { ID: Record<string, unknown>; }) {
+        const makeOnClick = (tab: string) => () => Router.open(tab);
+
+        const cats = [
+            {
+                section: ID.HEADER,
+                label: "Voltage"
+            }, {
+                section: "Settings",
+                label: "Settings",
+                element: () => <SettingsComponent tab="Settings" />,
+                onClick: makeOnClick("Settings")
+            }, {
+                section: "Plugins",
+                label: "Plugins",
+                element: () => <SettingsComponent tab="Plugins" />,
+                onClick: makeOnClick("Plugins")
+            }, {
+                section: "Themes",
+                label: "Themes",
+                element: () => <SettingsComponent tab="Themes" />,
+                onClick: makeOnClick("Themes")
+            }
+        ] as Array<{
+            section: unknown,
+            label?: string;
+            element?: React.ComponentType;
+            onClick?(): void;
+        }>;
+
+        if (!IS_WEB)
+            cats.push({
+                section: "Updater",
+                label: "Updater",
+                element: () => <SettingsComponent tab="Updater" />,
+                onClick: makeOnClick("Updater")
+            });
+
+        cats.push({
+            section: "SettingsSync",
+            label: "Backup & Restore",
+            element: () => <SettingsComponent tab="SettingsSync" />,
+            onClick: makeOnClick("SettingsSync")
+        });
+
+        if (IS_DEV)
+            cats.push({
+                section: "PatchHelper",
+                label: "Patch Helper",
+                element: PatchHelper!,
+                onClick: makeOnClick("PatchHelper")
+            });
+
+        cats.push({ section: ID.DIVIDER });
+
+        return cats;
+    },
 
     options: {
         settingsLocation: {
