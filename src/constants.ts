@@ -1,6 +1,6 @@
 /*
  * Voltage, A lightweight client mod focused on being better with themes.
- * Copyright (c) 2023 Zach J Murphy and Contributors
+ * Copyright (c) 2023 Sappy and Contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,10 +24,6 @@ export const REACT_GLOBAL = "Voltage.Webpack.Common.React";
 export const VOLTAGE_USER_AGENT = `Voltage/${gitHash}${gitRemote ? ` (https://codeberg.org/${gitRemote})` : ""}`;
 
 export const Devs = /* #__PURE__*/ Object.freeze({
-    Zach: {
-        name: "Zach",
-        id: 419788419095330826n
-    },
     Sappy: {
         name: "Sappy",
         id: 741262207391629343n

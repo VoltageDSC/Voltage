@@ -1,6 +1,6 @@
 /*
  * Voltage, A lightweight client mod focused on being better with themes.
- * Copyright (c) 2023 Zach J Murphy and Contributors
+ * Copyright (c) 2023 Sappy and Contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@ function formatDuration(ms: number) {
 export default definePlugin({
     name: "Call Timer",
     description: "Adds a timer to Voice Channels",
-    authors: [Devs.Zach],
+    authors: [Devs.Sappy],
 
     startTime: 0,
     interval: void 0 as NodeJS.Timeout | undefined,

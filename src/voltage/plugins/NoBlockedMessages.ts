@@ -1,6 +1,6 @@
 /*
  * Voltage, A lightweight client mod focused on being better with themes.
- * Copyright (c) 2023 Zach J Murphy and Contributors
+ * Copyright (c) 2023 Sappy and Contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ const RelationshipStore = findByPropsLazy("getRelationships", "isBlocked");
 export default definePlugin({
     name: "No Blocked Messages",
     description: "Hides all blocked messages from chat completely.",
-    authors: [Devs.Zach],
+    authors: [Devs.Sappy],
     patches: [
         {
             find: 'safety_prompt:"DMSpamExperiment",response:"show_redacted_messages"',

@@ -1,6 +1,6 @@
 /*
  * Voltage, A lightweight client mod focused on being better with themes.
- * Copyright (c) 2023 Zach J Murphy and Contributors
+ * Copyright (c) 2023 Sappy and Contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ const CODES_URL = "https://raw.githubusercontent.com/facebook/react/17.0.2/scrip
 export default definePlugin({
     name: "Unminify Errors",
     description: 'Replaces "Minifed React Error" with the actual error.',
-    authors: [Devs.Zach],
+    authors: [Devs.Sappy],
     patches: [
         {
             find: '"https://reactjs.org/docs/error-decoder.html?invariant="',

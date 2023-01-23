@@ -1,6 +1,6 @@
 /*
  * Voltage, A lightweight client mod focused on being better with themes.
- * Copyright (c) 2023 Zach J Murphy and Contributors
+ * Copyright (c) 2023 Sappy and Contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@ import { Clipboard, Toasts } from "@webpack/common";
 
 export default definePlugin({
     name: "Better Role Dot",
-    authors: [Devs.Zach],
+    authors: [Devs.Sappy],
     description: "Copy the role colour by clicking the Role Dot. Also allows using both the role dot and coloured names simultaneously",
 
     patches: [

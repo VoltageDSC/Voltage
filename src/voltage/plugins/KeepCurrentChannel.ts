@@ -1,6 +1,6 @@
 /*
  * Voltage, A lightweight client mod focused on being better with themes.
- * Copyright (c) 2023 Zach J Murphy and Contributors
+ * Copyright (c) 2023 Sappy and Contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,7 +40,7 @@ interface PreviousChannel {
 export default definePlugin({
     name: "Keep Current Channel",
     description: "Attempt to navigate to the channel you were in before switching accounts or loading Discord.",
-    authors: [Devs.Zach],
+    authors: [Devs.Sappy],
 
     isSwitchingAccount: false,
     previousCache: {} as PreviousChannel,

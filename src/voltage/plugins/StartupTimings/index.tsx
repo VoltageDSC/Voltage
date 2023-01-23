@@ -1,6 +1,6 @@
 /*
  * Voltage, A lightweight client mod focused on being better with themes.
- * Copyright (c) 2023 Zach J Murphy and Contributors
+ * Copyright (c) 2023 Sappy and Contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@ import { LazyComponent } from "@utils/Misc";
 export default definePlugin({
     name: "Startup Timings",
     description: "Adds Startup Timings to the Settings menu",
-    authors: [Devs.Zach],
+    authors: [Devs.Sappy],
     patches: [{
         find: "PAYMENT_FLOW_MODAL_TEST_PAGE,",
         replacement: {

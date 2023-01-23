@@ -1,6 +1,6 @@
 /*
  * Voltage, A lightweight client mod focused on being better with themes.
- * Copyright (c) 2023 Zach J Murphy and Contributors
+ * Copyright (c) 2023 Sappy and Contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -79,7 +79,7 @@ function createTagCommand(tag: Tag) {
 export default definePlugin({
     name: "Message Tags",
     description: "Allows you to save messages and to use them with a simple command.",
-    authors: [Devs.Zach],
+    authors: [Devs.Sappy],
     options: {
         clyde: {
             name: "Clyde message on send",

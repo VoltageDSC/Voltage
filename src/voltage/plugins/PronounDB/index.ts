@@ -1,6 +1,6 @@
 /*
  * Voltage, A lightweight client mod focused on being better with themes.
- * Copyright (c) 2023 Zach J Murphy and Contributors
+ * Copyright (c) 2023 Sappy and Contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ export enum PronounsFormat {
 
 export default definePlugin({
     name: "PronounDB",
-    authors: [Devs.Zach],
+    authors: [Devs.Sappy],
     description: "Shows you the pronoun of a user right next to their name. Pronouns by PronounDB.",
     patches: [
         // Patch the chat timestamp element

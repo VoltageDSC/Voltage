@@ -1,6 +1,6 @@
 /*
  * Voltage, A lightweight client mod focused on being better with themes.
- * Copyright (c) 2023 Zach J Murphy and Contributors
+ * Copyright (c) 2023 Sappy and Contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ const Engines = {
 export default definePlugin({
     name: "Reverse Image Search",
     description: "Allows you to reverse lookup a image via the Image Context Menu",
-    authors: [Devs.Zach],
+    authors: [Devs.Sappy],
     dependencies: ["Context Menu API"],
     patches: [{
         find: "open-native-link",

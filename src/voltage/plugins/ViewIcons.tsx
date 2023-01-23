@@ -1,6 +1,6 @@
 /*
  * Voltage, A lightweight client mod focused on being better with themes.
- * Copyright (c) 2023 Zach J Murphy and Contributors
+ * Copyright (c) 2023 Sappy and Contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ const GuildBannerStore = findByPropsLazy("getGuildBannerURL");
 const OPEN_URL = "Voltage.Plugins.plugins[\"View Icons\"].openImage(";
 export default new class ViewIcons implements PluginDef {
     name = "View Icons";
-    authors = [Devs.Zach];
+    authors = [Devs.Sappy];
     description = "Makes Avatars/Banners in user profiles clickable, and adds Guild Context Menu Entries to View Banner/Icon.";
     dependencies = ["Context Menu API"];
 

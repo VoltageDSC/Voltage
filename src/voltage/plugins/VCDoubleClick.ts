@@ -1,6 +1,6 @@
 /*
  * Voltage, A lightweight client mod focused on being better with themes.
- * Copyright (c) 2023 Zach J Murphy and Contributors
+ * Copyright (c) 2023 Sappy and Contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@ const timers = {} as Record<string, {
 export default definePlugin({
     name: "VC Double Click",
     description: "Requires you to double click voice channels to join them.",
-    authors: [Devs.Zach],
+    authors: [Devs.Sappy],
     patches: [
         {
             find: "VoiceChannel.renderPopout",

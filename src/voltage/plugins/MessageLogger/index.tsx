@@ -1,6 +1,6 @@
 /*
  * Voltage, A lightweight client mod focused on being better with themes.
- * Copyright (c) 2023 Zach J Murphy and Contributors
+ * Copyright (c) 2023 Sappy and Contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@ function addDeleteStyleClass() {
 export default definePlugin({
     name: "Message Logger",
     description: "Temporarily logs deleted and edited messages.",
-    authors: [Devs.Zach],
+    authors: [Devs.Sappy],
 
     timestampModule: null as any,
     moment: null as Function | null,

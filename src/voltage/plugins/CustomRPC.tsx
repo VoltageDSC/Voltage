@@ -1,6 +1,6 @@
 /*
  * Voltage, A lightweight client mod focused on being better with themes.
- * Copyright (c) 2023 Zach J Murphy and Contributors
+ * Copyright (c) 2023 Sappy and Contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -220,7 +220,7 @@ async function setRpc(disable?: Boolean) {
 export default definePlugin({
     name: "Custom RPC",
     description: "Allows you to set a custom rich presence on Discord.",
-    authors: [Devs.Zach],
+    authors: [Devs.Sappy],
     start: setRpc,
     stop: () => setRpc(true),
     settings,

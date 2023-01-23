@@ -1,6 +1,6 @@
 /*
  * Voltage, A lightweight client mod focused on being better with themes.
- * Copyright (c) 2023 Zach J Murphy and Contributors
+ * Copyright (c) 2023 Sappy and Contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@ import definePlugin from "@types";
 export default definePlugin({
     name: "Server List API",
     required: true,
-    authors: [Devs.Zach],
+    authors: [Devs.Sappy],
     description: "API required by plugins that Modify the Server List",
     patches: [
         {

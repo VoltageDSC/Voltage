@@ -1,6 +1,6 @@
 /*
  * Voltage, A lightweight client mod focused on being better with themes.
- * Copyright (c) 2023 Zach J Murphy and Contributors
+ * Copyright (c) 2023 Sappy and Contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -206,7 +206,7 @@ const Components = {
 
 export default definePlugin({
     name: "Permissions Viewer",
-    authors: [Devs.Zach],
+    authors: [Devs.Sappy],
     description: "Allows you to view a users / roles permissions.",
     dependencies: ["Context Menu API"],
     patches: [{

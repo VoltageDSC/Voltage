@@ -1,6 +1,6 @@
 /*
  * Voltage, A lightweight client mod focused on being better with themes.
- * Copyright (c) 2023 Zach J Murphy and Contributors
+ * Copyright (c) 2023 Sappy and Contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -76,7 +76,7 @@ function sendMessage(channelId, message) {
 export default definePlugin({
     name: "Spotify Share",
     description: "Share your current Spotify track, album or artist via slash command",
-    authors: [Devs.Zach],
+    authors: [Devs.Sappy],
     dependencies: ["Commands API"],
     commands: [
         {

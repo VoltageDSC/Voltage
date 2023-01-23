@@ -13,7 +13,7 @@
         "url": "git+https://codeberg.org/Voltage/Voltage.git"
     },
     "license": "AGPL-3.0-or-later",
-    "author": "Zach J Murphy",
+    "author": "Sappy",
     "directories": {
         "doc": "docs"
     },

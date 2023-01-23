@@ -1,6 +1,6 @@
 /*
  * Voltage, A lightweight client mod focused on being better with themes.
- * Copyright (c) 2023 Zach J Murphy and Contributors
+ * Copyright (c) 2023 Sappy and Contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -156,7 +156,7 @@ const indicatorLocations = {
 export default definePlugin({
     name: "Platform Indicators",
     description: "Adds indicators for every platform that the user is using.",
-    authors: [Devs.Zach],
+    authors: [Devs.Sappy],
     dependencies: ["Message Decorations API", "Member List Decorators API"],
 
     start() {

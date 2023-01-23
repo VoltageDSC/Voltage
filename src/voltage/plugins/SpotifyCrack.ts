@@ -1,6 +1,6 @@
 /*
  * Voltage, A lightweight client mod focused on being better with themes.
- * Copyright (c) 2023 Zach J Murphy and Contributors
+ * Copyright (c) 2023 Sappy and Contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@ import definePlugin, { OptionType } from "@types";
 export default definePlugin({
     name: "Spotify Crack",
     description: "Free listen along, no auto-pausing in voice chat, and allows activity to continue playing when idling",
-    authors: [Devs.Zach],
+    authors: [Devs.Sappy],
 
     patches: [{
         find: 'dispatch({type:"SPOTIFY_PROFILE_UPDATE"',

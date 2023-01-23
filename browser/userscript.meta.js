@@ -2,7 +2,7 @@
 // @name            Voltage
 // @description     A lightweight client mod focused on being better with themes.
 // @version         %version%
-// @author          Zach J Murphy (https://codeberg.org/ZachJMurphy)
+// @author          Sappy (https://codeberg.org/Sappy)
 // @namespace       https://codeberg.org/Voltage/Voltage
 // @supportURL      https://codeberg.org/Voltage/Voltage
 // @license         GPL-3.0

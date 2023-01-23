@@ -1,6 +1,6 @@
 /*
  * Voltage, A lightweight client mod focused on being better with themes.
- * Copyright (c) 2023 Zach J Murphy and Contributors
+ * Copyright (c) 2023 Sappy and Contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ const re = /https?:\/\/twitter\.com(?=\/\w+?\/status\/)/g;
 export default definePlugin({
     name: "FxTwitter",
     description: "Uses FxTwitter to Improve Twitter Embeds on send.",
-    authors: [Devs.Zach],
+    authors: [Devs.Sappy],
     dependencies: ["Message Events API"],
 
     addPrefix(msg: MessageObject) {

@@ -1,6 +1,6 @@
 /*
  * Voltage, A lightweight client mod focused on being better with themes.
- * Copyright (c) 2023 Zach J Murphy and Contributors
+ * Copyright (c) 2023 Sappy and Contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ const VIEW_CHANNEL = 1024n;
 export default definePlugin({
     name: "Show Hidden Channels",
     description: "Reveals role restricted channels however you can't read them.",
-    authors: [Devs.Zach],
+    authors: [Devs.Sappy],
     options: {
         hideUnreads: {
             description: "Hide unreads",

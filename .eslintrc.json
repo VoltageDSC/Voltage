@@ -36,7 +36,7 @@
                 " * Voltage, A lightweight client mod focused on being better with themes.",
                 {
                     "pattern": " \\* Copyright \\(c\\) \\d{4}",
-                    "template": " * Copyright (c) 2023 Zach J Murphy and Contributors"
+                    "template": " * Copyright (c) 2023 Sappy and Contributors"
                 },
                 " *",
                 " * This program is free software: you can redistribute it and/or modify",

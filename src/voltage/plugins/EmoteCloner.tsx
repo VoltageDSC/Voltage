@@ -1,6 +1,6 @@
 /*
  * Voltage, A lightweight client mod focused on being better with themes.
- * Copyright (c) 2023 Zach J Murphy and Contributors
+ * Copyright (c) 2023 Sappy and Contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -175,7 +175,7 @@ function CloneModal({ id, name: emojiName, isAnimated }: { id: string; name: str
 export default definePlugin({
     name: "Emote Cloner",
     description: "Adds the ability to clone emotes into your own server.",
-    authors: [Devs.Zach],
+    authors: [Devs.Sappy],
     dependencies: ["Context Menu API"],
 
     patches: [{

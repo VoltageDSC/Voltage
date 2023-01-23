@@ -1,6 +1,6 @@
 /*
  * Voltage, A lightweight client mod focused on being better with themes.
- * Copyright (c) 2023 Zach J Murphy and Contributors
+ * Copyright (c) 2023 Sappy and Contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -140,7 +140,7 @@ let ignoredActivitiesCache = new Map<IgnoredActivity["id"], IgnoredActivity>();
 
 export default definePlugin({
     name: "Ignore Activities",
-    authors: [Devs.Zach],
+    authors: [Devs.Sappy],
     description: "Ignore certain activities from showing up on your status. You can configure which ones are ignored from the Registered Games and Activities tabs.",
     patches: [{
         find: ".Messages.SETTINGS_GAMES_TOGGLE_OVERLAY",
