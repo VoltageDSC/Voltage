@@ -76,7 +76,7 @@ function Settings() {
 
             <Forms.FormDivider />
 
-            <Forms.FormSection title="Settings">
+            <Forms.FormSection className={Margins.marginTop16} title="Settings">
                 <Forms.FormText className={Margins.marginBottom20}>
                     Hint: You can change the position of this settings section in the settings of the "Settings" plugin!
                 </Forms.FormText>

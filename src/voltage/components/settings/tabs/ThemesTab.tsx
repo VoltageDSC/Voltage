@@ -93,7 +93,7 @@ export default ErrorBoundary.wrap(function () {
                 <Forms.FormTitle tag="h5">Instructions:</Forms.FormTitle>
                 <Forms.FormText>One link per line</Forms.FormText>
                 <Forms.FormText>Make sure to use the raw links or github.io links!</Forms.FormText>
-                <Forms.FormDivider />
+                <Forms.FormDivider className={Margins.marginTop8 + " " + Margins.marginBottom8} />
                 <Forms.FormTitle tag="h5">Find Themes:</Forms.FormTitle>
                 <div style={{ marginBottom: ".5em" }}>
                     <ul>

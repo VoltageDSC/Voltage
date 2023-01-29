@@ -67,6 +67,7 @@ export const globPlugins = {
                 if (!existsSync(`./src/voltage/${dir}`)) continue;
                 const files = await readdir(`./src/voltage/${dir}`);
                 for (const file of files) {
+                    if (file.startsWith(".")) continue;
                     if (file === "index.ts") {
                         continue;
                     }

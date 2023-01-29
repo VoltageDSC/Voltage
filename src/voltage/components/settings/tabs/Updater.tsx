@@ -198,7 +198,7 @@ function Updater() {
     };
 
     return (
-        <Forms.FormSection>
+        <Forms.FormSection className={Margins.marginTop16}>
             <Forms.FormTitle tag="h5">Repo</Forms.FormTitle>
 
             <Forms.FormText>{repoPending ? repo : err ? "Failed to retrieve - check console" : (
@@ -207,7 +207,7 @@ function Updater() {
                 </Link>
             )} (<HashLink hash={gitHash} repo={repo} disabled={repoPending} />)</Forms.FormText>
 
-            <Forms.FormDivider />
+            <Forms.FormDivider className={Margins.marginTop8 + " " + Margins.marginBottom8} />
 
             <Forms.FormTitle tag="h5">Updates</Forms.FormTitle>
 
