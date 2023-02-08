@@ -106,6 +106,12 @@ function Settings() {
                             note="Adds the native os window frame to the main window">
                             Frameless
                         </Switch>
+                        <Switch
+                            value={settings.transparent}
+                            onChange={(v: boolean) => settings.transparent = v}
+                            note="Allows the window to become transparent.">
+                            Enable window transparency
+                        </Switch>
                     </React.Fragment>
                 )}
 

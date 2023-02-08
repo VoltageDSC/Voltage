@@ -125,7 +125,7 @@ export default ErrorBoundary.wrap(function () {
                 }}
                 value={themeText}
                 onChange={e => setThemeText(e.currentTarget.value)}
-                className={TextAreaProps.textarea}
+                className={`voltage-textarea ${TextAreaProps.textarea}`}
                 placeholder="Paste links to .css"
                 spellCheck={false}
                 onBlur={onBlur}

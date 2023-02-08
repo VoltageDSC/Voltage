@@ -31,6 +31,7 @@ export interface Settings {
     ReactDevTools: boolean;
     themeLinks: string[];
     frameless: boolean;
+    transparent: boolean;
     plugins: {
         [plugin: string]: {
             enabled: boolean;
@@ -45,6 +46,7 @@ const DefaultSettings: Settings = {
     themeLinks: [],
     ReactDevTools: false,
     frameless: false,
+    transparent: false,
     plugins: {}
 };
 
