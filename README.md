@@ -1,7 +1,7 @@
 <a name="readme-top"></a>
 
 <div align="center">
-  <img src="https://i.imgur.com/v7uQ2RJ.png" alt="Logo" width="80" height="80">
+  <img src="https://sappy.gq/Developer%20Badge.png" alt="Logo" width="80" height="80">
   <h2 align="center">Voltage</h3>
   <p align="center">A lightweight client mod focused on being better with themes.</p>
 </div>
