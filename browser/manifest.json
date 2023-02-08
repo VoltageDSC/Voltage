@@ -1,10 +1,13 @@
 {
     "manifest_version": 3,
+    "minimum_chrome_version": "91",
     "name": "Voltage Web",
-    "description": "A lightweight client mod focused on being better with themes.",
-    "version": "1.0.0",
-    "author": "Sappy",
+    "description": "A lightweight client mod focused on being better with themes now in your browser.",
+    "author": "Slddev",
     "homepage_url": "https://codeberg.org/Voltage/Voltage",
+    "icons": {
+        "128": "icon.png"
+    },
     "host_permissions": [
         "*://*.discord.com/*",
         "https://raw.githubusercontent.com/*"
@@ -42,5 +45,11 @@
                 "path": "modifyResponseHeaders.json"
             }
         ]
+    },
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "Voltage-firefox@sappy.gq",
+            "strict_min_version": "109.0"
+        }
     }
 }

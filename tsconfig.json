@@ -18,13 +18,14 @@
 
         "baseUrl": "./src/",
         "paths": {
-            "@webpack": ["./voltage/webpack"],
-            "@webpack/common": ["./voltage/webpack/common"],
-            "@utils/*": ["./voltage/utils/*"],
             "@api/*": ["./core/api/*"],
             "@components/*": ["./voltage/components/*"],
+            "@constants": ["./constants"],
+            "@utils/*": ["./voltage/utils/*"],
             "@types": ["./types"],
-            "@constants": ["./constants"]
+            "@webpack/types": ["./voltage/webpack/common/types"],
+            "@webpack/common": ["./voltage/webpack/common"],
+            "@webpack": ["./voltage/webpack"]
         }
     },
     "include": ["src/**/*"]

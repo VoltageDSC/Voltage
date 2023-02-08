@@ -33,7 +33,7 @@ import { popNotice, showNotice } from "@api/Notices";
 import { PlainSettings, Settings } from "@api/Settings";
 import { checkForUpdates, UpdateLogger } from "@utils/Updater";
 import { onceReady } from "@webpack";
-import { Router } from "@webpack/common";
+import { SettingsRouter } from "@webpack/common";
 
 import { patches, PMLogger, startAllPlugins } from "../voltage/plugins";
 
@@ -54,7 +54,7 @@ async function init() {
                         "View Update",
                         () => {
                             popNotice();
-                            Router.open("VoltageUpdater");
+                            SettingsRouter.open("VoltageUpdater");
                         }
                     );
                 }, 10000);

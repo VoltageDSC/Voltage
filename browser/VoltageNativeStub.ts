@@ -19,8 +19,10 @@
 import * as DataStore from "../src/core/api/Data";
 import IpcEvents from "../src/voltage/utils/IPC";
 
+// Discord deletes this so need to store in variable
 const { localStorage } = window;
 
+// listeners for ipc.on
 const listeners = {} as Record<string, Set<Function>>;
 
 const handlers = {
@@ -33,8 +35,8 @@ const handlers = {
         listeners[IpcEvents.CUSTOM_CSS_UPDATE]?.forEach(l => l(null, css));
     },
 
-    [IpcEvents.GET_SETTINGS]: () => localStorage.getItem("Settings") || "{}",
-    [IpcEvents.SET_SETTINGS]: (s: string) => localStorage.setItem("Settings", s),
+    [IpcEvents.GET_SETTINGS]: () => localStorage.getItem("VoltageSettings") || "{}",
+    [IpcEvents.SET_SETTINGS]: (s: string) => localStorage.setItem("VoltageSettings", s),
 
     [IpcEvents.GET_UPDATES]: () => ({ ok: true, value: [] }),
 
@@ -43,10 +45,11 @@ const handlers = {
 
 function onEvent(event: string, ...args: any[]) {
     const handler = handlers[event];
-    if (!handler) throw new Error(`Event ${event} Not Implemented.`);
+    if (!handler) throw new Error(`Event ${event} not implemented.`);
     return handler(...args);
 }
 
+// probably should make this less cursed at some point
 window.VoltageNative = {
     getVersions: () => ({}),
     ipc: {

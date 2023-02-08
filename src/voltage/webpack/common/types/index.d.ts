@@ -1,4 +1,4 @@
-/*
+/*!
  * Voltage, A lightweight client mod focused on being better with themes.
  * Copyright (c) 2023 Sappy and Contributors
  *
@@ -16,6 +16,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-import "./VoltageNativeStub";
 
-export * from "../src/core/Voltage";
+export * from "./components";
+export * from "./fluxEvents";
+export * from "./menu";
+export * from "./utils";
+

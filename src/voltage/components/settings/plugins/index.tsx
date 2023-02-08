@@ -327,7 +327,7 @@ export default ErrorBoundary.wrap(function PluginSettings() {
             <div className={cl("grid")}>
                 {plugins}
             </div>
-            <Forms.FormDivider />
+            <Forms.FormDivider className={Margins.marginTop20} />
             <Forms.FormTitle tag="h5" className={classes(Margins.marginTop20, Margins.marginBottom8)}>
                 Required Plugins
             </Forms.FormTitle>

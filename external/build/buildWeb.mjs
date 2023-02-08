@@ -17,12 +17,14 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+
 import esbuild from "esbuild";
 import { zip } from "fflate";
 import { readFileSync } from "fs";
 import { appendFile, mkdir, readFile, rm, writeFile } from "fs/promises";
 import { join } from "path";
 
+// wtf is this assert syntax
 import PackageJSON from "../../package.json" assert { type: "json" };
 import { commonOpts, globPlugins, watch } from "./common.mjs";
 
@@ -66,6 +68,7 @@ await Promise.all(
                 js: readFileSync("browser/userscript.meta.js", "utf-8").replace("%version%", `${PackageJSON.version}.${new Date().getTime()}`)
             },
             footer: {
+                // UserScripts get wrapped in an iife, so define Voltage prop on window that returns our local
                 js: "Object.defineProperty(unsafeWindow,'Voltage',{get:()=>Voltage});"
             },
         })
@@ -79,10 +82,19 @@ async function buildPluginZip(target, files, shouldZip) {
     const entries = {
         "dist/Voltage.js": await readFile("dist/browser.js"),
         "dist/Voltage.css": await readFile("dist/browser.css"),
-        ...Object.fromEntries(await Promise.all(files.map(async f => [
-            (f.startsWith("manifest") ? "manifest.json" : f),
-            await readFile(join("browser", f))
-        ]))),
+        ...Object.fromEntries(await Promise.all(files.map(async f => {
+            let content = await readFile(join("browser", f));
+            if (f.startsWith("manifest")) {
+                const json = JSON.parse(content.toString("utf-8"));
+                json.version = PackageJSON.version;
+                content = new TextEncoder().encode(JSON.stringify(json));
+            }
+
+            return [
+                f.startsWith("manifest") ? "manifest.json" : f,
+                content
+            ];
+        }))),
     };
 
     if (shouldZip) {
@@ -108,22 +120,26 @@ async function buildPluginZip(target, files, shouldZip) {
             await writeFile(dest, content);
         }));
 
-        console.info("Unpacked Extension Written to dist/" + target);
+        console.info("Unpacked Extension written to dist/" + target);
     }
 }
 
-const cssText = "`" + readFileSync("dist/Voltage.user.css", "utf-8").replaceAll("`", "\\`") + "`";
-const cssRuntime = `
+const appendCssRuntime = readFile("dist/Voltage.user.css", "utf-8").then(content => {
+    const cssRuntime = `
 ;document.addEventListener("DOMContentLoaded", () => document.documentElement.appendChild(
     Object.assign(document.createElement("style"), {
-        textContent: ${cssText},
+        textContent: \`${content.replaceAll("`", "\\`")}\`,
         id: "voltage-css-core"
     })
 ), { once: true });
 `;
 
+    return appendFile("dist/Voltage.user.js", cssRuntime);
+});
+
 await Promise.all([
-    appendFile("dist/Voltage.user.js", cssRuntime),
-    buildPluginZip("Voltage-Chromium.zip", ["modifyResponseHeaders.json", "content.js", "manifestv3.json"], true),
+    appendCssRuntime,
+    buildPluginZip("extension.zip", ["modifyResponseHeaders.json", "content.js", "manifest.json", "icon.png"], true),
+    buildPluginZip("extension-unpacked", ["modifyResponseHeaders.json", "content.js", "manifest.json", "icon.png"], false),
 ]);
 

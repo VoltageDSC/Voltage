@@ -27,4 +27,5 @@ export * as Modals from "./Modal";
 export * from "./OnceDefined";
 export * from "./ProxyLazy";
 export * from "./Queue";
+export * from "./Text";
 

@@ -1,4 +1,4 @@
-/*
+/*!
  * Voltage, A lightweight client mod focused on being better with themes.
  * Copyright (c) 2023 Sappy and Contributors
  *
@@ -16,6 +16,22 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-import "./VoltageNativeStub";
 
-export * from "../src/core/Voltage";
+import { LazyComponent } from "@utils/Misc";
+
+// eslint-disable-next-line path-alias/no-relative
+import { FilterFn, waitFor } from "../webpack";
+
+export function waitForComponent<T extends React.ComponentType<any> = React.ComponentType<any> & Record<string, any>>(name: string, filter: FilterFn | string | string[]): T {
+    let myValue: T = function () {
+        throw new Error(`Voltage could not find the ${name} Component`);
+    } as any;
+
+    const lazyComponent = LazyComponent(() => myValue) as T;
+    waitFor(filter, (v: any) => {
+        myValue = v;
+        Object.assign(lazyComponent, v);
+    });
+
+    return lazyComponent;
+}

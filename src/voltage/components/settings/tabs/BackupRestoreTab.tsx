@@ -48,7 +48,7 @@ function BackupRestoreTab() {
             <Forms.FormDivider />
             <Flex>
                 <Button
-                    onClick={uploadSettingsBackup}
+                    onClick={() => uploadSettingsBackup()}
                     size={Button.Sizes.SMALL}
                 >
                     Import Settings

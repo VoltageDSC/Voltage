@@ -45,7 +45,7 @@ async function calculateGitChanges() {
     const res = await githubGet(`/compare/${gitHash}...HEAD`);
 
     const data = JSON.parse(res.toString("utf-8"));
-    return data.commits.map(c => ({
+    return data.commits.map((c: any) => ({
         hash: c.sha.slice(0, 7),
         author: c.author.login,
         message: c.commit.message

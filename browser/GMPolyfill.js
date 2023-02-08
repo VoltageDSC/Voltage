@@ -52,6 +52,7 @@ function parseHeaders(headers) {
     return result;
 }
 
+// returns true if CORS permits request
 async function checkCors(url, method) {
     const headers = parseHeaders(await fetchOptions(url));
 
@@ -80,6 +81,7 @@ function GM_fetch(url, opt) {
         checkCors(url, opt?.method || "GET")
             .then(can => {
                 if (can) {
+                    // https://www.tampermonkey.net/documentation.php?ext=dhdg#GM_xmlhttpRequest
                     const options = opt || {};
                     options.url = url;
                     options.data = options.body;

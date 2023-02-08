@@ -1,0 +1,69 @@
+/*!
+ * Voltage, A lightweight client mod focused on being better with themes.
+ * Copyright (c) 2023 Sappy and Contributors
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
+
+import type { ComponentType, CSSProperties, PropsWithChildren, UIEvent } from "react";
+
+type RC<C> = ComponentType<PropsWithChildren<C & Record<string, any>>>;
+
+export interface Menu {
+    ContextMenu: RC<{
+        navId: string;
+        onClose(): void;
+        className?: string;
+        style?: CSSProperties;
+        hideScroller?: boolean;
+        onSelect?(): void;
+    }>;
+    MenuSeparator: ComponentType;
+    MenuGroup: RC<any>;
+    MenuItem: RC<{
+        id: string;
+        label: string;
+        render?: ComponentType;
+        onChildrenScroll?: Function;
+        childRowHeight?: number;
+        listClassName?: string;
+    }>;
+    MenuCheckboxItem: RC<{
+        id: string;
+    }>;
+    MenuRadioItem: RC<{
+        id: string;
+    }>;
+    MenuControlItem: RC<{
+        id: string;
+        interactive?: boolean;
+    }>;
+}
+
+export interface ContextMenuApi {
+    close(): void;
+    open(
+        event: UIEvent,
+        render?: Menu["ContextMenu"],
+        options?: { enableSpellCheck?: boolean; },
+        renderLazy?: () => Promise<Menu["ContextMenu"]>
+    ): void;
+    openLazy(
+        event: UIEvent,
+        renderLazy?: () => Promise<Menu["ContextMenu"]>,
+        options?: { enableSpellCheck?: boolean; }
+    ): void;
+}
+

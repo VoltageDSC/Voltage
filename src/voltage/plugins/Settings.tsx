@@ -22,7 +22,7 @@ import { Devs } from "@constants";
 import definePlugin, { OptionType } from "@types";
 import Logger from "@utils/Logger";
 import { LazyComponent } from "@utils/Misc";
-import { Router } from "@webpack/common";
+import { SettingsRouter } from "@webpack/common";
 
 const SettingsComponent = LazyComponent(() => require("../components/settings").default);
 
@@ -55,7 +55,7 @@ export default definePlugin({
     }],
 
     makeSettingsCategories({ ID }: { ID: Record<string, unknown>; }) {
-        const makeOnClick = (tab: string) => () => Router.open(tab);
+        const makeOnClick = (tab: string) => () => SettingsRouter.open(tab);
 
         const cats = [
             {
