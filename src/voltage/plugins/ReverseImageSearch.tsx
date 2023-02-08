@@ -47,7 +47,7 @@ export default definePlugin({
         replacement: [
             {
                 match: /ariaLabel:\i\.Z\.Messages\.MESSAGE_ACTIONS_MENU_LABEL/,
-                replace: "$&,_vencordTarget:arguments[0].target"
+                replace: "$&,_voltageTarget:arguments[0].target"
             },
             {
                 // var f = props.itemHref, .... MakeNativeMenu(null != f ? f : blah)
