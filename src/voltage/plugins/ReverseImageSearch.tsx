@@ -52,7 +52,7 @@ export default definePlugin({
             {
                 // var f = props.itemHref, .... MakeNativeMenu(null != f ? f : blah)
                 match: /(\i)=\i\.itemHref,.+?\(null!=\1\?\1:.{1,10}(?=\))/,
-                replace: "$&,arguments[0]._vencordTarget"
+                replace: "$&,arguments[0]._voltageTarget"
             }
         ]
     }],
