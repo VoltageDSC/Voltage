@@ -57,7 +57,7 @@ const settings = definePluginSettings({
 });
 
 export default definePlugin({
-    name: "ShowHiddenChannels",
+    name: "Show Hidden Channels",
     description: "Show channels that you do not have access to view.",
     authors: [Devs.Sappy],
     settings,

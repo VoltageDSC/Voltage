@@ -44,7 +44,7 @@ const settings = definePluginSettings({
 });
 
 export default definePlugin({
-    name: "TypingTweaks",
+    name: "Typing Tweaks",
     description: "Show avatars and role colours in the typing indicator",
     authors: [Devs.Sappy],
     patches: [
