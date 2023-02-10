@@ -19,6 +19,7 @@
 import "./messageLogger.css";
 
 import { Settings } from "@api/Settings";
+import { disableStyle, enableStyle } from "@api/Styles";
 import ErrorBoundary from "@components/errors/ErrorBoundary";
 import { Devs } from "@constants";
 import definePlugin, { OptionType } from "@types";
@@ -26,13 +27,16 @@ import Logger from "@utils/Logger";
 import { findByPropsLazy } from "@webpack";
 import { Parser, UserStore } from "@webpack/common";
 
-function addDeleteStyleClass() {
+import overlayStyle from "./deleteStyleOverlay.css?managed";
+import textStyle from "./deleteStyleText.css?managed";
+
+function addDeleteStyle() {
     if (Settings.plugins["Message Logger"].deleteStyle === "text") {
-        document.body.classList.remove("messagelogger-red-overlay");
-        document.body.classList.add("messagelogger-red-text");
+        enableStyle(textStyle);
+        disableStyle(overlayStyle);
     } else {
-        document.body.classList.remove("messagelogger-red-text");
-        document.body.classList.add("messagelogger-red-overlay");
+        disableStyle(textStyle);
+        enableStyle(overlayStyle);
     }
 }
 
@@ -48,7 +52,7 @@ export default definePlugin({
         this.moment = findByPropsLazy("relativeTimeRounding", "relativeTimeThreshold");
         this.timestampModule = findByPropsLazy("messageLogger_TimestampComponent");
 
-        addDeleteStyleClass();
+        addDeleteStyle();
     },
 
     stop() {
@@ -92,7 +96,7 @@ export default definePlugin({
                 { label: "Red text", value: "text", default: true },
                 { label: "Red overlay", value: "overlay" }
             ],
-            onChange: () => addDeleteStyleClass()
+            onChange: () => addDeleteStyle()
         },
         ignoreBots: {
             type: OptionType.BOOLEAN,
