@@ -19,9 +19,10 @@
 import { useSettings } from "@api/Settings";
 import ErrorBoundary from "@components/errors/ErrorBoundary";
 import { Link } from "@components/Link";
+import { Margins } from "@utils/Margins";
 import { useAwaiter } from "@utils/Misc";
 import { findLazy } from "@webpack";
-import { Card, Forms, Margins, React, TextArea } from "@webpack/common";
+import { Card, Forms, React, TextArea } from "@webpack/common";
 
 const TextAreaProps = findLazy(m => typeof m.textarea === "string");
 
@@ -51,7 +52,7 @@ function Validators({ themeLinks }: { themeLinks: string[]; }) {
 
     return (
         <>
-            <Forms.FormTitle className={Margins.marginTop20} tag="h5">Validator</Forms.FormTitle>
+            <Forms.FormTitle className={Margins.top20} tag="h5">Validator</Forms.FormTitle>
             <Forms.FormText>This section will tell you whether your themes can successfully be loaded</Forms.FormText>
             <div>
                 {themeLinks.map(link => (
@@ -93,7 +94,7 @@ export default ErrorBoundary.wrap(function () {
                 <Forms.FormTitle tag="h5">Instructions:</Forms.FormTitle>
                 <Forms.FormText>One link per line</Forms.FormText>
                 <Forms.FormText>Make sure to use the raw links or github.io links!</Forms.FormText>
-                <Forms.FormDivider className={Margins.marginTop8 + " " + Margins.marginBottom8} />
+                <Forms.FormDivider className={Margins.top8 + " " + Margins.bottom8} />
                 <Forms.FormTitle tag="h5">Find Themes:</Forms.FormTitle>
                 <div style={{ marginBottom: ".5em" }}>
                     <ul>

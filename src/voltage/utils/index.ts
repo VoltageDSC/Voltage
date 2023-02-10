@@ -22,6 +22,7 @@ export * from "./Debounce";
 export * as Discord from "./Discord";
 export { default as IpcEvents } from "./IPC";
 export { default as Logger } from "./Logger";
+export * from "./Margins";
 export * from "./Misc";
 export * as Modals from "./Modal";
 export * from "./OnceDefined";

@@ -38,6 +38,12 @@ export interface Settings {
             [setting: string]: any;
         };
     };
+
+    notifications: {
+        timeout: number;
+        position: "top-right" | "bottom-right";
+        useNative: "always" | "never" | "not-focused";
+    };
 }
 
 const DefaultSettings: Settings = {
@@ -47,7 +53,13 @@ const DefaultSettings: Settings = {
     ReactDevTools: false,
     frameless: false,
     transparent: false,
-    plugins: {}
+    plugins: {},
+
+    notifications: {
+        timeout: 5000,
+        position: "bottom-right",
+        useNative: "not-focused"
+    }
 };
 
 try {

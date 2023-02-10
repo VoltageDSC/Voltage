@@ -1,4 +1,4 @@
-/*!
+/*
  * Voltage, A lightweight client mod focused on being better with themes.
  * Copyright (c) 2023 Sappy and Contributors
  *
@@ -16,19 +16,20 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+let styleStr = "";
 
-// eslint-disable-next-line path-alias/no-relative
-import { findByPropsLazy, waitFor } from "../webpack";
+export const Margins: Record<`${"top" | "bottom" | "left" | "right"}${8 | 16 | 20}`, string> = {} as any;
 
-export let React: typeof import("react");
-export let useState: typeof React.useState;
-export let useEffect: typeof React.useEffect;
-export let useMemo: typeof React.useMemo;
-export let useRef: typeof React.useRef;
+for (const dir of ["top", "bottom", "left", "right"] as const) {
+    for (const size of [8, 16, 20] as const) {
+        const cl = `vc-m-${dir}-${size}`;
+        Margins[`${dir}${size}`] = cl;
+        styleStr += `.${cl}{margin-${dir}:${size}px;}`;
+    }
+}
 
-export const ReactDOM: typeof import("react-dom") & typeof import("react-dom/client") = findByPropsLazy("createPortal", "render");
-
-waitFor("useState", m => {
-    React = m;
-    ({ useEffect, useState, useMemo, useRef } = React);
-});
+document.addEventListener("DOMContentLoaded", () =>
+    document.head.append(Object.assign(document.createElement("style"), {
+        textContent: styleStr,
+        id: "voltage-margins"
+    })), { once: true });

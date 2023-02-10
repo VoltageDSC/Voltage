@@ -19,10 +19,11 @@
 import { CheckedTextInput } from "@components/CheckedTextInput";
 import ErrorBoundary from "@components/errors/ErrorBoundary";
 import { debounce } from "@utils/Debounce";
+import { Margins } from "@utils/Margins";
 import { makeCodeblock } from "@utils/Misc";
 import { canonicalizeMatch, canonicalizeReplace, ReplaceFn } from "@utils/Patches";
 import { search } from "@webpack";
-import { Button, Clipboard, Forms, Margins, Parser, React, Switch, Text, TextInput } from "@webpack/common";
+import { Button, Clipboard, Forms, Parser, React, Switch, Text, TextInput } from "@webpack/common";
 
 if (IS_DEV) {
     var differ = require("diff") as typeof import("diff");
@@ -124,7 +125,7 @@ function ReplacementComponent({ module, match, replacement, setReplacementError 
             )}
 
             {!!diff?.length && (
-                <Button className={Margins.marginTop20} onClick={() => {
+                <Button className={Margins.top20} onClick={() => {
                     try {
                         Function(patchedCode.replace(/^function\(/, "function patchedModule("));
                         setCompileResult([true, "Compiled successfully"]);
@@ -198,7 +199,7 @@ function ReplacementInput({ replacement, setReplacement, replacementError }) {
             )}
 
             <Switch
-                className={Margins.marginTop8}
+                className={Margins.top8}
                 value={isFunc}
                 onChange={setIsFunc}
                 note="'replacement' will be evaled if this is toggled"
@@ -252,7 +253,7 @@ function PatchHelper() {
 
     return (
         <Forms.FormSection>
-            <Text variant="heading-md/normal" tag="h2" className={Margins.marginBottom8}>Patch Helper</Text>
+            <Text variant="heading-md/normal" tag="h2" className={Margins.bottom8}>Patch Helper</Text>
             <Forms.FormTitle>find</Forms.FormTitle>
             <TextInput
                 type="text"
@@ -292,7 +293,7 @@ function PatchHelper() {
 
             {!!(find && match && replacement) && (
                 <>
-                    <Forms.FormTitle className={Margins.marginTop20}>Code</Forms.FormTitle>
+                    <Forms.FormTitle className={Margins.top20}>Code</Forms.FormTitle>
                     <div style={{ userSelect: "text" }}>{Parser.parse(makeCodeblock(code, "ts"))}</div>
                     <Button onClick={() => Clipboard.copy(code)}>Copy to Clipboard</Button>
                 </>

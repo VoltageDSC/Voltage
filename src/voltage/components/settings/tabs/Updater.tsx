@@ -21,9 +21,10 @@ import { ErrorCard } from "@components/errors/ErrorCard";
 import { Flex } from "@components/Flex";
 import { handleComponentFailed } from "@components/handleComponentFailed";
 import { Link } from "@components/Link";
+import { Margins } from "@utils/Margins";
 import { classes, useAwaiter } from "@utils/Misc";
 import { changes, checkForUpdates, getRepo, isNewer, rebuild, update, updateError, UpdateLogger } from "@utils/Updater";
-import { Alerts, Button, Card, Forms, Margins, Parser, React, Toasts } from "@webpack/common";
+import { Alerts, Button, Card, Forms, Parser, React, Toasts } from "@webpack/common";
 
 import gitHash from "~git-hash";
 
@@ -108,7 +109,7 @@ function Updatable(props: CommonProps) {
                     </ErrorCard>
                 </>
             ) : (
-                <Forms.FormText className={Margins.marginBottom8}>
+                <Forms.FormText className={Margins.bottom8}>
                     {isOutdated ? `${updates.length} Updates Available` : "Latest Version"}
                 </Forms.FormText>
             )}
@@ -117,7 +118,7 @@ function Updatable(props: CommonProps) {
 
             <Forms.FormDivider />
 
-            <Flex className={classes(Margins.marginBottom8, Margins.marginTop8)}>
+            <Flex className={classes(Margins.bottom8, Margins.top8)}>
                 {isOutdated && <Button
                     size={Button.Sizes.SMALL}
                     disabled={isUpdating || isChecking}
@@ -176,7 +177,7 @@ function Updatable(props: CommonProps) {
 function Newer(props: CommonProps) {
     return (
         <>
-            <Forms.FormText className={Margins.marginBottom8}>
+            <Forms.FormText className={Margins.bottom8}>
                 Your local copy has more recent commits. Please stash or reset them.
             </Forms.FormText>
             <Changes {...props} updates={changes} />
@@ -198,7 +199,7 @@ function Updater() {
     };
 
     return (
-        <Forms.FormSection className={Margins.marginTop16}>
+        <Forms.FormSection className={Margins.top16}>
             <Forms.FormTitle tag="h5">Repo</Forms.FormTitle>
 
             <Forms.FormText>{repoPending ? repo : err ? "Failed to retrieve - check console" : (
@@ -207,7 +208,7 @@ function Updater() {
                 </Link>
             )} (<HashLink hash={gitHash} repo={repo} disabled={repoPending} />)</Forms.FormText>
 
-            <Forms.FormDivider className={Margins.marginTop8 + " " + Margins.marginBottom8} />
+            <Forms.FormDivider className={Margins.top8 + " " + Margins.bottom8} />
 
             <Forms.FormTitle tag="h5">Updates</Forms.FormTitle>
 

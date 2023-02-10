@@ -20,7 +20,7 @@
 import { LazyComponent } from "@utils/Misc";
 
 // eslint-disable-next-line path-alias/no-relative
-import { FilterFn, waitFor } from "../webpack";
+import { FilterFn, filters, waitFor } from "../webpack";
 
 export function waitForComponent<T extends React.ComponentType<any> = React.ComponentType<any> & Record<string, any>>(name: string, filter: FilterFn | string | string[]): T {
     let myValue: T = function () {
@@ -34,4 +34,8 @@ export function waitForComponent<T extends React.ComponentType<any> = React.Comp
     });
 
     return lazyComponent;
+}
+
+export function waitForStore(name: string, cb: (v: any) => void) {
+    waitFor(filters.byStoreName(name), cb);
 }

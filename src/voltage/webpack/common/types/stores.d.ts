@@ -16,19 +16,25 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+import { FluxDispatcher, FluxEvents } from "./utils";
 
-// eslint-disable-next-line path-alias/no-relative
-import { findByPropsLazy, waitFor } from "../webpack";
+export class FluxStore {
+    constructor(dispatcher: FluxDispatcher, eventHandlers?: Partial<Record<FluxEvents, (data: any) => void>>);
 
-export let React: typeof import("react");
-export let useState: typeof React.useState;
-export let useEffect: typeof React.useEffect;
-export let useMemo: typeof React.useMemo;
-export let useRef: typeof React.useRef;
+    emitChange(): void;
+    getDispatchToken(): string;
+    getName(): string;
+    initialize(): void;
+    initializeIfNeeded(): void;
+    __getLocalVars(): Record<string, any>;
+}
 
-export const ReactDOM: typeof import("react-dom") & typeof import("react-dom/client") = findByPropsLazy("createPortal", "render");
+export interface Flux {
+    Store: typeof FluxStore;
+}
 
-waitFor("useState", m => {
-    React = m;
-    ({ useEffect, useState, useMemo, useRef } = React);
-});
+export class WindowStore extends FluxStore {
+    isElementFullScreen(): boolean;
+    isFocused(): boolean;
+    windowSize(): Record<"width" | "height", number>;
+}

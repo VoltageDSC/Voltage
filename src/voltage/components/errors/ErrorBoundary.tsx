@@ -17,8 +17,9 @@
 */
 
 import Logger from "@utils/Logger";
+import { Margins } from "@utils/Margins";
 import { LazyComponent } from "@utils/Misc";
-import { Margins, React } from "@webpack/common";
+import { React } from "@webpack/common";
 
 import { ErrorCard } from "./ErrorCard";
 
@@ -88,7 +89,7 @@ const ErrorBoundary = LazyComponent(() => {
                     <code>
                         {this.state.message}
                         {!!this.state.stack && (
-                            <pre className={Margins.marginTop8}>
+                            <pre className={Margins.top8}>
                                 {this.state.stack}
                             </pre>
                         )}

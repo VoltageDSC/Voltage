@@ -21,9 +21,10 @@ import ErrorBoundary from "@components/errors/ErrorBoundary";
 import { Flex } from "@components/Flex";
 import { Devs } from "@constants";
 import definePlugin from "@types";
+import { Margins } from "@utils/Margins";
 import { copyWithToast } from "@utils/Misc";
 import { closeModal, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalRoot, ModalSize, openModal } from "@utils/Modal";
-import { Button, ChannelStore, Forms, Margins, Parser, Text } from "@webpack/common";
+import { Button, ChannelStore, Forms, Parser, Text } from "@webpack/common";
 import { Message } from "discord-types/general";
 
 
@@ -98,7 +99,7 @@ function openViewRawModal(msg: Message) {
                             <>
                                 <Forms.FormTitle tag="h5">Content</Forms.FormTitle>
                                 <CodeBlock content={msg.content} lang="" />
-                                <Forms.FormDivider className={Margins.marginBottom20} />
+                                <Forms.FormDivider className={Margins.bottom20} />
                             </>
                         )}
 

@@ -20,5 +20,5 @@
 export * from "./components";
 export * from "./fluxEvents";
 export * from "./menu";
+export * from "./stores";
 export * from "./utils";
-
