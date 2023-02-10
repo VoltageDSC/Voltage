@@ -32,7 +32,7 @@ let id = 42;
 function getRoot() {
     if (!reactRoot) {
         const container = document.createElement("div");
-        container.id = "vc-notification-container";
+        container.id = "voltage-notification-container";
         document.body.append(container);
         reactRoot = ReactDOM.createRoot(container);
     }

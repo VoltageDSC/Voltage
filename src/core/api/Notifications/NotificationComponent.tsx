@@ -60,7 +60,7 @@ export default ErrorBoundary.wrap(function NotificationComponent({
 
     return (
         <button
-            className="vc-notification-root"
+            className="voltage-notification-root"
             style={position === "bottom-right" ? { bottom: "1rem" } : { top: "3rem" }}
             onClick={onClick}
             onContextMenu={e => {
@@ -71,19 +71,19 @@ export default ErrorBoundary.wrap(function NotificationComponent({
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
         >
-            <div className="vc-notification">
-                {icon && <img className="vc-notification-icon" src={icon} alt="" />}
-                <div className="vc-notification-content">
+            <div className="voltage-notification">
+                {icon && <img className="voltage-notification-icon" src={icon} alt="" />}
+                <div className="voltage-notification-content">
                     <Forms.FormTitle tag="h2">{title}</Forms.FormTitle>
                     <div>
-                        {richBody ?? <p className="vc-notification-p">{body}</p>}
+                        {richBody ?? <p className="voltage-notification-p">{body}</p>}
                     </div>
                 </div>
             </div>
-            {image && <img className="vc-notification-img" src={image} alt="" />}
+            {image && <img className="voltage-notification-img" src={image} alt="" />}
             {timeout !== 0 && (
                 <div
-                    className="vc-notification-progressbar"
+                    className="voltage-notification-progressbar"
                     style={{ width: `${(1 - timeoutProgress) * 100}%`, backgroundColor: color || "var(--brand-experiment)" }}
                 />
             )}
