@@ -100,7 +100,7 @@ export default definePlugin({
             find,
             replacement: {
                 match: /(?<=var (?<channel>\i)=\i\.channel,(?<guild>\i)=\i\.guild.+?children:\[)(?=.{0,30}"notifications")/,
-                replace: `Voltage.Plugins.plugins[\"Permissions Viewer\"].MenuItem($<guild>.id,$<channel>.id,${MenuItemParentType.Channel}),`
+                replace: `Voltage.Plugins.plugins["Permissions Viewer"].MenuItem($<guild>.id,$<channel>.id,${MenuItemParentType.Channel}),`
             }
         }))
     ],
