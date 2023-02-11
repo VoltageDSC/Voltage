@@ -115,8 +115,8 @@ export const gitRemotePlugin = {
         build.onLoad({ filter, namespace: "git-remote" }, async () => {
             const res = await promisify(exec)("git remote get-url origin", { encoding: "utf-8" });
             const remote = res.stdout.trim()
-                .replace("https://codeberg.org/", "")
-                .replace("git@codeberg.org:", "")
+                .replace("https://github.com/", "")
+                .replace("git@github.com:", "")
                 .replace(/.git$/, "");
 
             return { contents: `export default "${remote}"` };

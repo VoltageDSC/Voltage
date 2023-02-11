@@ -16,6 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+import { VOLTAGE_USER_AGENT } from "@constants";
 import IpcEvents from "@utils/IPC";
 import { ipcMain } from "electron";
 import { writeFile } from "fs/promises";
@@ -27,13 +28,14 @@ import gitRemote from "~git-remote";
 import { get } from "../simpleGet";
 import { calculateHashes, serializeErrors } from "./common";
 
-const API_BASE = `https://codeberg.org/api/v1/repos/${gitRemote}`;
+const API_BASE = `https://api.github.com/repos/${gitRemote}`;
 let PendingUpdates = [] as [string, string][];
 
 async function githubGet(endpoint: string) {
     return get(API_BASE + endpoint, {
         headers: {
-            Accept: "application/json"
+            Accept: "application/vnd.github+json",
+            "User-Agent": VOLTAGE_USER_AGENT
         }
     });
 }
@@ -77,7 +79,7 @@ async function applyUpdates() {
 }
 
 ipcMain.handle(IpcEvents.GET_HASHES, serializeErrors(calculateHashes));
-ipcMain.handle(IpcEvents.GET_REPO, serializeErrors(() => `https://codeberg.org/${gitRemote}`));
+ipcMain.handle(IpcEvents.GET_REPO, serializeErrors(() => `https://github.com/${gitRemote}`));
 ipcMain.handle(IpcEvents.GET_UPDATES, serializeErrors(calculateGitChanges));
 ipcMain.handle(IpcEvents.UPDATE, serializeErrors(fetchUpdates));
 ipcMain.handle(IpcEvents.BUILD, serializeErrors(applyUpdates));

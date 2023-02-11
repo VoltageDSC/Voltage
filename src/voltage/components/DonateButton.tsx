@@ -28,7 +28,7 @@ export default function DonateButton(props: any) {
             look={Button.Looks.LINK}
             color={Button.Colors.TRANSPARENT}
             onClick={() =>
-                VoltageNative.ipc.invoke(IpcEvents.OPEN_EXTERNAL, "https://codeberg.org/Sappy")
+                VoltageNative.ipc.invoke(IpcEvents.OPEN_EXTERNAL, "https://github.com/Slddev")
             }
         >
             <Heart />
