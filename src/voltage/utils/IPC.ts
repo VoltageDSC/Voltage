@@ -43,6 +43,5 @@ export default strEnum({
     GET_HASHES: "VoltageGetHashes",
     UPDATE: "VoltageUpdate",
     BUILD: "VoltageBuild",
-    OPEN_MONACO_EDITOR: "VoltageOpenMonacoEditor",
-    DOWNLOAD_VOLTAGE_CSS: "VoltageDownloadVoltageCss"
+    OPEN_MONACO_EDITOR: "VoltageOpenMonacoEditor"
 } as const);

@@ -18,7 +18,6 @@
 
 import { onceDefined } from "@utils/OnceDefined";
 import electron, { app, BrowserWindowConstructorOptions } from "electron";
-import { readFileSync } from "fs";
 import { dirname, join } from "path";
 
 import { initIpc } from "../ipc";
@@ -156,18 +155,4 @@ if (!process.argv.includes("--vanilla")) {
 }
 
 console.log("[Voltage] Loading Original Discord app.asar");
-
-if (readFileSync(injectorPath, "utf-8").includes('require("../app.asar")')) {
-    console.warn("[Voltage] [--> WARNING <--] You have a legacy Voltage install. Please reinject");
-    const Module = require("module");
-    const loadModule = Module._load;
-    Module._load = function (path: string) {
-        if (path === "../app.asar") {
-            Module._load = loadModule;
-            arguments[0] = require.main!.filename;
-        }
-        return loadModule.apply(this, arguments);
-    };
-} else {
-    require(require.main!.filename);
-}
+require(require.main!.filename);
