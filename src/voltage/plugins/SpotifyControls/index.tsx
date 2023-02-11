@@ -16,16 +16,36 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+import { Settings } from "@api/Settings";
 import { Devs } from "@constants";
-import definePlugin from "@types";
+import definePlugin, { OptionType } from "@types";
 
 import { Player } from "./components/PlayerComponent";
+
+function toggleHoverControls(value: boolean) {
+    document.getElementById("voltage-spotify-hover-controls")?.remove();
+    if (value) {
+        const style = document.createElement("style");
+        style.id = "voltage-spotify-hover-controls";
+        style.textContent = `.voltage-spotify-button-row { height: 0; opacity: 0; will-change: height, opacity; transition: height .2s, opacity .05s; }
+        #voltage-spotify-player:hover .voltage-spotify-button-row { opacity: 1; height: 32px; }`;
+        document.head.appendChild(style);
+    }
+}
 
 export default definePlugin({
     name: "Spotify Controls",
     description: "Adds a Control Panel while Listening to Spotify.",
     authors: [Devs.Sappy],
     dependencies: ["Context Menu API"],
+    options: {
+        hoverControls: {
+            description: "Show controls on hover",
+            type: OptionType.BOOLEAN,
+            default: false,
+            onChange: v => toggleHoverControls(v)
+        },
+    },
     patches: [
         {
             find: "showTaglessAccountPanel:",
@@ -49,6 +69,6 @@ export default definePlugin({
             }
         }
     ],
-
+    start: () => toggleHoverControls(Settings.plugins["Spotify Controls"].hoverControls),
     renderPlayer: () => <Player />
 });
