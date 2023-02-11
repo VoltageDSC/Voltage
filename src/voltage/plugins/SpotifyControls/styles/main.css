@@ -93,10 +93,6 @@
     overflow: hidden;
 }
 
-.voltage-spotify-tooltip-text {
-    margin: unset;
-}
-
 #voltage-spotify-song-title {
     color: var(--header-primary);
     font-size: 14px;
