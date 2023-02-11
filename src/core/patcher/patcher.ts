@@ -17,7 +17,7 @@
 */
 
 import { onceDefined } from "@utils/OnceDefined";
-import electron, { app, BrowserWindowConstructorOptions } from "electron";
+import electron, { app, BrowserWindowConstructorOptions, Menu } from "electron";
 import { dirname, join } from "path";
 
 import { initIpc } from "../ipc";
@@ -38,14 +38,33 @@ require.main!.filename = join(asarPath, discordPkg.main);
 app.setAppPath(asarPath);
 
 if (!process.argv.includes("--vanilla")) {
-    if (process.platform === "win32") {
-        require("./patchWin32Updater");
-    }
-
-    let settings = {} as any;
+    let settings: typeof import("@api/Settings").Settings = {} as any;
     try {
         settings = JSON.parse(readSettings());
     } catch { }
+
+    if (process.platform === "win32") {
+        require("./patchWin32Updater");
+
+        if (settings.winCtrlQ) {
+            const originalBuild = Menu.buildFromTemplate;
+            Menu.buildFromTemplate = function (template) {
+                if (template[0]?.label === "&File") {
+                    const { submenu } = template[0];
+                    if (Array.isArray(submenu)) {
+                        submenu.push({
+                            label: "Quit (Hidden)",
+                            visible: false,
+                            acceleratorWorksWhenHidden: true,
+                            accelerator: "Control+Q",
+                            click: () => app.quit()
+                        });
+                    }
+                }
+                return originalBuild.call(this, template);
+            };
+        }
+    }
 
     class BrowserWindow extends electron.BrowserWindow {
         constructor(options: BrowserWindowConstructorOptions) {

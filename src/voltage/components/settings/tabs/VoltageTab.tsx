@@ -66,6 +66,11 @@ function Settings() {
                 title: "Enable window transparency",
                 note: "Requires a full restart"
             },
+            !IS_WEB && isWindows && {
+                key: "winCtrlQ",
+                title: "Register Ctrl+Q as shortcut to close Discord (Alternative to Alt+F4)",
+                note: "Requires a full restart"
+            }
         ];
 
     return (

@@ -16,6 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+import { useSettings } from "@api/Settings";
 import ErrorBoundary from "@components/errors/ErrorBoundary";
 import { ErrorCard } from "@components/errors/ErrorCard";
 import { Flex } from "@components/Flex";
@@ -24,7 +25,7 @@ import { Link } from "@components/Link";
 import { Margins } from "@utils/Margins";
 import { classes, useAwaiter } from "@utils/Misc";
 import { changes, checkForUpdates, getRepo, isNewer, rebuild, update, updateError, UpdateLogger } from "@utils/Updater";
-import { Alerts, Button, Card, Forms, Parser, React, Toasts } from "@webpack/common";
+import { Alerts, Button, Card, Forms, Parser, React, Switch, Toasts } from "@webpack/common";
 
 import gitHash from "~git-hash";
 
@@ -186,6 +187,8 @@ function Newer(props: CommonProps) {
 }
 
 function Updater() {
+    const settings = useSettings(["notifyAboutUpdates", "autoUpdate"]);
+
     const [repo, err, repoPending] = useAwaiter(getRepo, { fallbackValue: "Loading..." });
 
     React.useEffect(() => {
@@ -200,6 +203,22 @@ function Updater() {
 
     return (
         <Forms.FormSection className={Margins.top16}>
+            <Forms.FormTitle tag="h5">Updater Settings</Forms.FormTitle>
+            <Switch
+                value={settings.notifyAboutUpdates}
+                onChange={(v: boolean) => settings.notifyAboutUpdates = v}
+                note="Shows a toast on startup"
+                disabled={settings.autoUpdate}
+            >
+                Get notified about new updates
+            </Switch>
+            <Switch
+                value={settings.autoUpdate}
+                onChange={(v: boolean) => settings.autoUpdate = v}
+                note="Automatically update Voltage without confirmation prompt"
+            >
+                Automatically update
+            </Switch>
             <Forms.FormTitle tag="h5">Repo</Forms.FormTitle>
 
             <Forms.FormText>{repoPending ? repo : err ? "Failed to retrieve - check console" : (

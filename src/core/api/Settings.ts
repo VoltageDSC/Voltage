@@ -26,11 +26,14 @@ import plugins from "~plugins";
 
 const logger = new Logger("Settings");
 export interface Settings {
+    notifyAboutUpdates: boolean;
+    autoUpdate: boolean;
     ShowToasts: boolean;
     CustomCSS: boolean;
     ReactDevTools: boolean;
     themeLinks: string[];
     frameless: boolean;
+    winCtrlQ: boolean;
     transparent: boolean;
     plugins: {
         [plugin: string]: {
@@ -47,11 +50,14 @@ export interface Settings {
 }
 
 const DefaultSettings: Settings = {
+    notifyAboutUpdates: true,
+    autoUpdate: false,
     ShowToasts: true,
     CustomCSS: true,
     themeLinks: [],
     ReactDevTools: false,
     frameless: false,
+    winCtrlQ: false,
     transparent: false,
     plugins: {},
 

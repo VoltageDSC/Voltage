@@ -31,7 +31,7 @@ import "../voltage/webpack/patchWebpack";
 
 import { popNotice, showNotice } from "@api/Notices";
 import { PlainSettings, Settings } from "@api/Settings";
-import { checkForUpdates, UpdateLogger } from "@utils/Updater";
+import { checkForUpdates, rebuild, update, UpdateLogger } from "@utils/Updater";
 import { onceReady } from "@webpack";
 import { SettingsRouter } from "@webpack/common";
 
@@ -47,7 +47,27 @@ async function init() {
     if (!IS_WEB) {
         try {
             const isOutdated = await checkForUpdates();
-            if (isOutdated && Settings.ShowToasts)
+            if (!isOutdated) return;
+
+            if (Settings.autoUpdate) {
+                await update();
+                const needsFullRestart = await rebuild();
+                setTimeout(() => {
+                    showNotice(
+                        "Voltage has been updated!",
+                        "Restart",
+                        () => {
+                            if (needsFullRestart)
+                                window.DiscordNative.app.relaunch();
+                            else
+                                location.reload();
+                        }
+                    );
+                }, 10_000);
+                return;
+            }
+
+            if (Settings.notifyAboutUpdates)
                 setTimeout(() => {
                     showNotice(
                         "A new update is available for Voltage. Would you like to view the update?",
@@ -57,7 +77,7 @@ async function init() {
                             SettingsRouter.open("VoltageUpdater");
                         }
                     );
-                }, 10000);
+                }, 10_000);
         } catch (err) {
             UpdateLogger.error("Failed to check for updates", err);
         }
