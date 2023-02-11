@@ -1,0 +1,50 @@
+name: Build Latest
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - .github/workflows/build.yml
+            - src/**
+            - browser/**
+            - external/build/**
+            - package.json
+            - pnpm-lock.yaml
+env:
+    FORCE_COLOR: true
+
+jobs:
+    Build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v3.2.0
+            - uses: pnpm/action-setup@v2.2.4
+
+            - name: Use Node.js 19
+              uses: actions/setup-node@v3.5.1
+              with:
+                  node-version: 19
+                  cache: "pnpm"
+
+            - name: Install Dependencies
+              run: pnpm install --frozen-lockfile
+
+            - name: Build Web
+              run: pnpm buildWeb --standalone
+
+            - name: Build Desktop
+              run: pnpm build --standalone
+
+            - name: Get Values
+              id: release_values
+              run: |
+                echo "release_tag=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+
+            - name: Upload Latest
+              run: |
+                gh release upload latest --clobber dist/*
+                gh release edit latest --title "Latest $RELEASE_TAG"
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                RELEASE_TAG: ${{ env.release_tag }}

@@ -1,0 +1,34 @@
+name: Feature Request
+description: Create a feature request for Voltage.
+labels: [enhancement]
+title: "feat(type) <title>"
+
+body:
+  - type: input
+    id: discord
+    attributes:
+      label: Discord Account
+      description: Who on Discord is making this request? Not required but encouraged for easier follow-up
+      placeholder: username#0000
+    validations:
+      required: false
+
+  - type: textarea
+    id: feature-basic-description
+    attributes:
+      label: What is it that you'd like to see?
+      description: Describe the feature you want added as detailed as possible
+      placeholder: I think ... would be a cool feature to add. This would be awesome, thanks!
+    validations:
+      required: true
+
+  - type: checkboxes
+    attributes:
+    label: Request Agreement
+    options:
+    - label: I have searched the issue tracker and did not find an issue describing my request, especially not one that has been rejected.
+      required: true
+
+  - type: textarea
+    attributes:
+      label: You may use the editor below to elaborate further.
