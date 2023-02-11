@@ -98,7 +98,6 @@
 }
 
 .permviewer-perms-perms-item-icon {
-    border: 1px solid var(--background-modifier-selected);
     width: 25px;
     height: 25px;
     margin-right: 5px;
