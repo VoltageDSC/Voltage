@@ -41,7 +41,7 @@ import Plugins from "~plugins";
 import { startDependenciesRecursive, startPlugin, stopPlugin } from "../../../plugins";
 
 const cl = classNameFactory("voltage-plugins-");
-const logger = new Logger("PluginSettings", "#a6d189");
+const logger = new Logger("settings", "#a6d189");
 
 const InputStyles = findByPropsLazy("inputDefault", "inputWrapper");
 
@@ -91,12 +91,9 @@ interface PluginCardProps extends React.HTMLProps<HTMLDivElement> {
 }
 
 function PluginCard({ plugin, disabled, onRestartNeeded, onMouseEnter, onMouseLeave, isNew }: PluginCardProps) {
-    const settings = useSettings();
-    const pluginSettings = settings.plugins[plugin.name];
+    const settings = useSettings([`plugins.${plugin.name}`]).plugins[plugin.name];
 
-    function isEnabled() {
-        return pluginSettings?.enabled || plugin.started;
-    }
+    const isEnabled = () => settings.enabled ?? false;
 
     function openModal() {
         openModalLazy(async () => {
@@ -118,7 +115,7 @@ function PluginCard({ plugin, disabled, onRestartNeeded, onMouseEnter, onMouseLe
                 return;
             } else if (restartNeeded) {
                 // If any dependencies have patches, don't start the plugin yet.
-                pluginSettings.enabled = true;
+                settings.enabled = true;
                 onRestartNeeded(plugin.name);
                 return;
             }
@@ -126,14 +123,14 @@ function PluginCard({ plugin, disabled, onRestartNeeded, onMouseEnter, onMouseLe
 
         // if the plugin has patches, dont use stopPlugin/startPlugin. Wait for restart to apply changes.
         if (plugin.patches) {
-            pluginSettings.enabled = !wasEnabled;
+            settings.enabled = !wasEnabled;
             onRestartNeeded(plugin.name);
             return;
         }
 
         // If the plugin is enabled, but hasn't been started, then we can just toggle it off.
         if (wasEnabled && !plugin.started) {
-            pluginSettings.enabled = !wasEnabled;
+            settings.enabled = !wasEnabled;
             return;
         }
 
@@ -146,7 +143,7 @@ function PluginCard({ plugin, disabled, onRestartNeeded, onMouseEnter, onMouseLe
             return;
         }
 
-        pluginSettings.enabled = !wasEnabled;
+        settings.enabled = !wasEnabled;
     }
 
     return (
@@ -177,7 +174,7 @@ enum SearchStatus {
     DISABLED
 }
 
-export default ErrorBoundary.wrap(function PluginSettings() {
+export default ErrorBoundary.wrap(function settings() {
     const settings = useSettings();
     const changes = React.useMemo(() => new ChangeList<string>(), []);
 
