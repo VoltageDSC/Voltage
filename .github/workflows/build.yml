@@ -44,6 +44,7 @@ jobs:
 
             - name: Upload Latest
               run: |
+                rm -rf dist/extension-unpacked
                 gh release upload latest --clobber dist/*
                 gh release edit latest --title "Latest $RELEASE_TAG"
               env:
