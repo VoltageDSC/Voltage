@@ -30,7 +30,7 @@ export default definePlugin({
             find: "inQuote:",
             replacement: {
                 match: /,content:([^,]+),inQuote/,
-                replace: (_, content) => `,content:Voltage.Plugins.plugins.Unindent.unindent(${content}),inQuote`
+                replace: (_, content) => `,content:$self.Unindent.unindent(${content}),inQuote`
             }
         }
     ],

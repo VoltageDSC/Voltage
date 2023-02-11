@@ -100,7 +100,7 @@ export default definePlugin({
                     const copyChannelTopicItem = mod.match(/(?<=,).{1,2}(?==function.{0,60}"copy-channel-topic")/);
 
                     if (copyChannelTopicItem) {
-                        mod = mod.replace(RegExp(`(?<=children:\\[)(?=.{1,2}\\?${copyChannelTopicItem[0]})`), `Vencord.Plugins.plugins.PermissionsViewer.MenuItem(${guild}.id,${channel}.id,${MenuItemParentType.Channel}),`);
+                        mod = mod.replace(RegExp(`(?<=children:\\[)(?=.{1,2}\\?${copyChannelTopicItem[0]})`), `Voltage.Plugins.plugins["Permissions Viewer"].MenuItem(${guild}.id,${channel}.id,${MenuItemParentType.Channel}),`);
                     }
 
                     return mod;
