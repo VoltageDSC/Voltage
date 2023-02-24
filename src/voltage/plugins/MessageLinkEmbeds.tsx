@@ -142,7 +142,7 @@ interface MessageEmbedProps {
 function withEmbeddedBy(message: Message, embeddedBy: string[]) {
     return new Proxy(message, {
         get(_, prop) {
-            if (prop === "vencordEmbeddedBy") return embeddedBy;
+            if (prop === "voltageEmbeddedBy") return embeddedBy;
             // @ts-ignore ts so bad
             return Reflect.get(...arguments);
         }
@@ -211,7 +211,7 @@ export default definePlugin({
         while ((match = this.messageLinkRegex.exec(message.content!)) !== null) {
             const [_, guildID, channelID, messageID] = match;
             // @ts-ignore
-            const embeddedBy: string[] = message.vencordEmbeddedBy ?? [];
+            const embeddedBy: string[] = message.voltageEmbeddedBy ?? [];
 
             const linkedChannel = ChannelStore.getChannel(channelID);
             if (!linkedChannel || (guildID !== "@me" && !PermissionStore.can(1024n /* view channel */, linkedChannel))) {

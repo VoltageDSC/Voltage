@@ -1,7 +1,7 @@
 {
     "name": "voltage",
     "private": "true",
-    "version": "1.0.4",
+    "version": "1.0.7",
     "description": "A lightweight client mod focused on being better with themes.",
     "keywords": [],
     "homepage": "https://codeberg.org/Voltage/Voltage#readme",
