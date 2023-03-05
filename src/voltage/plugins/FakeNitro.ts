@@ -69,7 +69,7 @@ interface StickerPack {
 }
 
 export default definePlugin({
-    name: "FakeNitro",
+    name: "Fake Nitro",
     authors: [Devs.Sappy],
     description: "Allows you to stream in nitro quality, send fake emojis/stickers and use client themes.",
     dependencies: ["Message Events API"],

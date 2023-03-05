@@ -22,6 +22,7 @@ import gitRemote from "~git-remote";
 export const WEBPACK_CHUNK = "webpackChunkdiscord_app";
 export const REACT_GLOBAL = "Voltage.Webpack.Common.React";
 export const VOLTAGE_USER_AGENT = `Voltage/${gitHash}${gitRemote ? ` (https://github.com/${gitRemote})` : ""}`;
+export const SUPPORT_CHANNEL_ID = "1066784201652834394";
 
 export const Devs = /* #__PURE__*/ Object.freeze({
     Sappy: {

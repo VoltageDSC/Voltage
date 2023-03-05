@@ -81,9 +81,7 @@ const ErrorBoundary = LazyComponent(() => {
             const msg = this.props.message || "An error occurred while rendering this Component. More info can be found below and in your console.";
 
             return (
-                <ErrorCard style={{
-                    overflow: "hidden",
-                }}>
+                <ErrorCard style={{ overflow: "hidden" }}>
                     <h1>Oh no!</h1>
                     <p>{msg}</p>
                     <code>

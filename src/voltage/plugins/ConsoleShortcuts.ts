@@ -18,6 +18,9 @@
 
 import { Devs } from "@constants";
 import definePlugin from "@types";
+import * as Webpack from "@webpack";
+import { extract, filters, findAll, search } from "@webpack";
+import { React } from "@webpack/common";
 
 const WEB_ONLY = (f: string) => () => {
     throw new Error(`'${f}' is Discord Desktop only.`);
@@ -25,23 +28,52 @@ const WEB_ONLY = (f: string) => () => {
 
 export default definePlugin({
     name: "Console Shortcuts",
-    description: "Adds shorter aliases for elements on the window. Run `shortcutList` for a list.",
+    description: "Adds shorter Aliases for many things on the window. Run `shortcutList` for a list.",
     authors: [Devs.Sappy],
 
     getShortcuts() {
+        function newFindWrapper(filterFactory: (props: any) => Webpack.FilterFn) {
+            const cache = new Map<string, any>();
+
+            return function (filterProps: any) {
+                const cacheKey = String(filterProps);
+                if (cache.has(cacheKey)) return cache.get(cacheKey);
+
+                const matches = findAll(filterFactory(filterProps));
+
+                const result = (() => {
+                    switch (matches.length) {
+                        case 0: return null;
+                        case 1: return matches[0];
+                        default:
+                            const uniqueMatches = [...new Set(matches)];
+                            if (uniqueMatches.length > 1)
+                                console.warn(`Warning: This filter matches ${matches.length} modules. Make it more specific!\n`, uniqueMatches);
+
+                            return matches[0];
+                    }
+                })();
+                if (result && cacheKey) cache.set(cacheKey, result);
+                return result;
+            };
+        }
+
         return {
-            toClip: IS_WEB ? WEB_ONLY("toClip") : window.DiscordNative.clipboard.copy,
-            fromClip: IS_WEB ? WEB_ONLY("fromClip") : window.DiscordNative.clipboard.read,
             wp: Voltage.Webpack,
-            wpc: Voltage.Webpack.wreq.c,
-            wreq: Voltage.Webpack.wreq,
-            wpsearch: Voltage.Webpack.search,
-            wpex: Voltage.Webpack.extract,
+            wpc: Webpack.wreq.c,
+            wreq: Webpack.wreq,
+            wpsearch: search,
+            wpex: extract,
             wpexs: (code: string) => Voltage.Webpack.extract(Voltage.Webpack.findModuleId(code)!),
-            findByProps: Voltage.Webpack.findByProps,
-            find: Voltage.Webpack.find,
-            Plugins: Voltage.Plugins,
-            React: Voltage.Webpack.Common.React,
+            find: newFindWrapper(f => f),
+            findAll,
+            findByProps: newFindWrapper(filters.byProps),
+            findAllByProps: (...props: string[]) => findAll(filters.byProps(...props)),
+            findByCode: newFindWrapper(filters.byCode),
+            findAllByCode: (code: string) => findAll(filters.byCode(code)),
+            PluginsApi: Voltage.Plugins,
+            plugins: Voltage.Plugins.plugins,
+            React,
             Settings: Voltage.Settings,
             Api: Voltage.Api,
             reload: () => location.reload(),

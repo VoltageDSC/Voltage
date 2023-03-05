@@ -24,6 +24,8 @@ import Logger from "@utils/Logger";
 import { LazyComponent } from "@utils/Misc";
 import { SettingsRouter } from "@webpack/common";
 
+import gitHash from "~git-hash";
+
 const SettingsComponent = LazyComponent(() => require("../components/settings").default);
 
 export default definePlugin({
@@ -135,4 +137,38 @@ export default definePlugin({
         updater: () => <SettingsComponent tab="VoltageUpdater" />,
         sync: () => <SettingsComponent tab="VoltageSettingsSync" />
     },
+
+    get electronVersion() {
+        return VoltageNative.getVersions().electron || window.armcord?.electron || null;
+    },
+
+    get chromiumVersion() {
+        try {
+            return VoltageNative.getVersions().chrome
+                // @ts-ignore Typescript will add userAgentData IMMEDIATELY
+                || navigator.userAgentData?.brands?.find(b => b.brand === "Chromium" || b.brand === "Google Chrome")?.version
+                || null;
+        } catch { // inb4 some stupid browser throws unsupported error for navigator.userAgentData, it's only in chromium
+            return null;
+        }
+    },
+
+    get additionalInfo() {
+        if (IS_DEV) return " (Dev)";
+        if (IS_WEB) return " (Web)";
+        if (IS_STANDALONE) return " (Standalone)";
+        return "";
+    },
+
+    makeInfoElements(Component: React.ComponentType<React.PropsWithChildren>, props: React.PropsWithChildren) {
+        const { electronVersion, chromiumVersion, additionalInfo } = this;
+
+        return (
+            <>
+                <Component {...props}>Voltage {gitHash}{additionalInfo}</Component>
+                {electronVersion && <Component {...props}>Electron {electronVersion}</Component>}
+                {chromiumVersion && <Component {...props}>Chromium {chromiumVersion}</Component>}
+            </>
+        );
+    }
 });
