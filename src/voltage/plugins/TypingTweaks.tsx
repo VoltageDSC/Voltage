@@ -53,7 +53,7 @@ export default definePlugin({
         {
             find: "getCooldownTextStyle",
             replacement: {
-                match: /=(\i)\[2];(.+)"aria-atomic":!0,children:(\i)}\)/,
+                match: /return \i\.\i\.getName\(.,.\.props\.channel\.id,(.)\)/,
                 replace: "=$1[2];$2\"aria-atomic\":!0,style:{display:\"grid\",gridAutoFlow:\"column\",gridGap:\"0.25em\"},children:$self.mutateChildren(this.props,$1,$3)})"
             }
         },

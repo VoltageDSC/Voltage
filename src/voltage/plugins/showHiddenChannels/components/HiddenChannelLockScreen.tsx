@@ -19,9 +19,10 @@
 import ErrorBoundary from "@components/errors/ErrorBoundary";
 import { LazyComponent } from "@utils/Misc";
 import { formatDuration } from "@utils/Text";
-import { find, findByCode, findByPropsLazy } from "@webpack";
+import { find, findByPropsLazy } from "@webpack";
 import { FluxDispatcher, GuildMemberStore, GuildStore, moment, Parser, SnowflakeUtils, Text, Timestamp, Tooltip } from "@webpack/common";
 import { Channel } from "discord-types/general";
+import type { ComponentType } from "react";
 
 enum SortOrderTypes {
     LATEST_ACTIVITY = 0,
@@ -73,6 +74,17 @@ enum ChannelFlags {
     REQUIRE_TAG = 1 << 4
 }
 
+let EmojiComponent: ComponentType<any>;
+let ChannelBeginHeader: ComponentType<any>;
+
+export function setEmojiComponent(component: ComponentType<any>) {
+    EmojiComponent = component;
+}
+
+export function setChannelBeginHeaderComponent(component: ComponentType<any>) {
+    ChannelBeginHeader = component;
+}
+
 const ChatScrollClasses = findByPropsLazy("auto", "content", "scrollerBase");
 const TagComponent = LazyComponent(() => find(m => {
     if (typeof m !== "function") return false;
@@ -81,9 +93,6 @@ const TagComponent = LazyComponent(() => find(m => {
     // Get the component which doesn't include increasedActivity logic
     return code.includes(".Messages.FORUM_TAG_A11Y_FILTER_BY_TAG") && !code.includes("increasedActivityPill");
 }));
-const EmojiComponent = LazyComponent(() => findByCode('.jumboable?"jumbo":"default"'));
-// The component for the beggining of a channel, but we patched it so it only returns the allowed users and roles components for hidden channels
-const ChannelBeginHeader = LazyComponent(() => findByCode(".Messages.ROLE_REQUIRED_SINGLE_USER_MESSAGE"));
 
 const ChannelTypesToChannelNames = {
     [ChannelTypes.GUILD_TEXT]: "text",
