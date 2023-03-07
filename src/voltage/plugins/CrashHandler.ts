@@ -70,7 +70,7 @@ export default definePlugin({
 
     handleCrash(_this: ReactElement & { forceUpdate: () => void; }) {
         try {
-            maybePromptToUpdate("Uh oh, Discord has just crashed... but good news, there is a Vencord update available that might fix this issue! Would you like to update now?", true);
+            maybePromptToUpdate("Uh oh, Discord has just crashed... but good news, there is a Voltage update available that might fix this issue! Would you like to update now?", true);
 
             if (settings.store.attemptToPreventCrashes) {
                 this.handlePreventCrash(_this);
