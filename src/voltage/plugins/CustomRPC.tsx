@@ -20,6 +20,7 @@ import { definePluginSettings } from "@api/Settings";
 import { Link } from "@components/Link";
 import { Devs } from "@constants";
 import definePlugin, { OptionType } from "@types";
+import { isTruthy } from "@utils/Guards";
 import { useAwaiter } from "@utils/Misc";
 import { filters, findByCodeLazy, findByPropsLazy, mapMangledModuleLazy } from "@webpack";
 import {
@@ -55,11 +56,11 @@ interface ActivityAssets {
 }
 
 interface Activity {
-    state: string;
+    state?: string;
     details?: string;
     timestamps?: {
-        start?: Number;
-        end?: Number;
+        start?: number;
+        end?: number;
     };
     assets?: ActivityAssets;
     buttons?: Array<string>;
@@ -69,7 +70,7 @@ interface Activity {
         button_urls?: Array<string>;
     };
     type: ActivityType;
-    flags: Number;
+    flags: number;
 }
 
 enum ActivityType {
@@ -91,13 +92,13 @@ const numOpt = (description: string) => ({
     onChange: setRpc
 }) as const;
 
-const choice = (label: string, value: any, _default?: Boolean) => ({
+const choice = (label: string, value: any, _default?: boolean) => ({
     label,
     value,
     default: _default
 }) as const;
 
-const choiceOpt = (description: string, options) => ({
+const choiceOpt = <T,>(description: string, options: T) => ({
     type: OptionType.SELECT,
     description,
     onChange: setRpc,
@@ -171,13 +172,13 @@ async function createActivity(): Promise<Activity | undefined> {
         activity.buttons = [
             buttonOneText,
             buttonTwoText
-        ].filter(Boolean);
+        ].filter(isTruthy);
 
         activity.metadata = {
             button_urls: [
                 buttonOneURL,
                 buttonTwoURL
-            ].filter(Boolean)
+            ].filter(isTruthy)
         };
     }
 
@@ -208,7 +209,7 @@ async function createActivity(): Promise<Activity | undefined> {
     return activity;
 }
 
-async function setRpc(disable?: Boolean) {
+async function setRpc(disable?: boolean) {
     const activity: Activity | undefined = await createActivity();
 
     FluxDispatcher.dispatch({
