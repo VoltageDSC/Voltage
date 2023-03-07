@@ -91,7 +91,7 @@ function makeProxy(settings: any, root = settings, path = ""): Settings {
             if (!(p in target)) {
                 if (path === "plugins" && p in plugins)
                     return target[p] = makeProxy({
-                        enabled: plugins[p].required ?? false
+                        enabled: plugins[p].required ?? plugins[p].enabledByDefault ?? false
                     }, root, `plugins.${p}`);
 
                 if (path.startsWith("plugins.")) {
