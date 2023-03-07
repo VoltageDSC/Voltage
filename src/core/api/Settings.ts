@@ -33,8 +33,9 @@ export interface Settings {
     ReactDevTools: boolean;
     themeLinks: string[];
     frameless: boolean;
-    winCtrlQ: boolean;
     transparent: boolean;
+    winCtrlQ: boolean;
+    winNativeTitleBar: boolean;
     plugins: {
         [plugin: string]: {
             enabled: boolean;
@@ -57,8 +58,9 @@ const DefaultSettings: Settings = {
     themeLinks: [],
     ReactDevTools: false,
     frameless: false,
-    winCtrlQ: false,
     transparent: false,
+    winCtrlQ: false,
+    winNativeTitleBar: false,
     plugins: {},
 
     notifications: {

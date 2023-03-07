@@ -57,11 +57,15 @@ function Settings() {
                 title: "Enable React Developer Tools",
                 note: "Requires a full restart"
             },
-            !IS_WEB && !isWindows && {
+            !IS_WEB && (!isWindows ? {
                 key: "frameless",
                 title: "Disable the window frame",
                 note: "Requires a full restart"
-            },
+            } : {
+                key: "winNativeTitleBar",
+                title: "Use Windows' native title bar instead of Discord's custom one",
+                note: "Requires a full restart"
+            }),
             !IS_WEB && {
                 key: "transparent",
                 title: "Enable window transparency",
