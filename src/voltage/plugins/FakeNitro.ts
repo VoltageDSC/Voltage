@@ -80,16 +80,16 @@ export default definePlugin({
             predicate: () => Settings.plugins["Fake Nitro"].enableEmojiBypass === true,
             replacement: [
                 {
-                    match: /(?<=(?<intention>\i)=\i\.intention)/,
-                    replace: ",fakeNitroIntention=$<intention>"
+                    match: /(?<=(\i)=\i\.intention)/,
+                    replace: (_, intention) => `,fakeNitroIntention=${intention}`
                 },
                 {
                     match: /(?<=\.(?:canUseEmojisEverywhere|canUseAnimatedEmojis)\(\i)(?=\))/g,
                     replace: ',typeof fakeNitroIntention!=="undefined"?fakeNitroIntention:void 0'
                 },
                 {
-                    match: /(?<=&&!\i&&)!(?<canUseExternal>\i)(?=\)return \i\.\i\.DISALLOW_EXTERNAL;)/,
-                    replace: `(!$<canUseExternal>&&(typeof fakeNitroIntention==="undefined"||![${EmojiIntentions.CHAT},${EmojiIntentions.GUILD_STICKER_RELATED_EMOJI}].includes(fakeNitroIntention)))`
+                    match: /(?<=&&!\i&&)!(\i)(?=\)return \i\.\i\.DISALLOW_EXTERNAL;)/,
+                    replace: (_, canUseExternal) => `(!${canUseExternal}&&(typeof fakeNitroIntention==="undefined"||![${EmojiIntentions.CHAT},${EmojiIntentions.GUILD_STICKER_RELATED_EMOJI}].includes(fakeNitroIntention)))`
                 }
             ]
         },
@@ -97,16 +97,16 @@ export default definePlugin({
             find: "canUseAnimatedEmojis:function",
             predicate: () => Settings.plugins["Fake Nitro"].enableEmojiBypass === true,
             replacement: {
-                match: /(?<=(?:canUseEmojisEverywhere|canUseAnimatedEmojis):function\((?<user>\i))\){(?<premiumCheck>.+?\))/g,
-                replace: `,fakeNitroIntention){$<premiumCheck>||fakeNitroIntention==null||[${EmojiIntentions.CHAT},${EmojiIntentions.GUILD_STICKER_RELATED_EMOJI}].includes(fakeNitroIntention)`
+                match: /(?<=(?:canUseEmojisEverywhere|canUseAnimatedEmojis):function\(\i)\){(.+?\))/g,
+                replace: (_, premiumCheck) => `,fakeNitroIntention){${premiumCheck}||fakeNitroIntention==null||[${EmojiIntentions.CHAT},${EmojiIntentions.GUILD_STICKER_RELATED_EMOJI}].includes(fakeNitroIntention)`
             }
         },
         {
             find: "canUseStickersEverywhere:function",
             predicate: () => Settings.plugins["Fake Nitro"].enableStickerBypass === true,
             replacement: {
-                match: /canUseStickersEverywhere:function\(.+?\{/,
-                replace: "$&return true;"
+                match: /(?<=canUseStickersEverywhere:function\(\i\){)/,
+                replace: "return true;"
             },
         },
         {
@@ -126,8 +126,8 @@ export default definePlugin({
                 "canStreamMidQuality"
             ].map(func => {
                 return {
-                    match: new RegExp(`${func}:function\\(.+?\\{`),
-                    replace: "$&return true;"
+                    match: new RegExp(`(?<=${func}:function\\(\\i\\){)`),
+                    replace: "return true;"
                 };
             })
         },
