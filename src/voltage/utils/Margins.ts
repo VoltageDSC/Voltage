@@ -22,7 +22,7 @@ export const Margins: Record<`${"top" | "bottom" | "left" | "right"}${8 | 16 | 2
 
 for (const dir of ["top", "bottom", "left", "right"] as const) {
     for (const size of [8, 16, 20] as const) {
-        const cl = `vc-m-${dir}-${size}`;
+        const cl = `voltage-m-${dir}-${size}`;
         Margins[`${dir}${size}`] = cl;
         styleStr += `.${cl}{margin-${dir}:${size}px;}`;
     }
