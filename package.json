@@ -53,7 +53,7 @@
         "eslint-plugin-path-alias": "^1.0.0",
         "eslint-plugin-simple-import-sort": "^10.0.0",
         "eslint-plugin-unused-imports": "^2.0.0",
-        "highlight.js": "11.7.0",
+        "highlight.js": "10.6.0",
         "moment": "^2.29.4",
         "puppeteer-core": "^19.7.4",
         "standalone-electron-types": "^1.0.0",
