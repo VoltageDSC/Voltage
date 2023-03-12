@@ -4,7 +4,7 @@ First of all, thank you for contributing! :3
 
 To ensure your contribution is robust, please follow the below guide!
 
-For a friendly introduction to plugins, see [Plugin Guide!](https://codeberg.org/Voltage/Voltage/wiki/Plugins-Guide)
+For a friendly introduction to plugins, see [Plugin Guide!](https://github.com/VoltageDSC/Voltage/wiki/Plugins-Guide)
 
 ## Style Guide
 

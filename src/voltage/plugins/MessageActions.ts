@@ -19,12 +19,14 @@
 import { addClickListener, removeClickListener } from "@api/MessageEvents";
 import { Devs } from "@constants";
 import definePlugin, { OptionType } from "@types";
-import { findByPropsLazy, findLazy } from "@webpack";
-import { UserStore } from "@webpack/common";
+import { findByPropsLazy } from "@webpack";
+import { PermissionStore, UserStore } from "@webpack/common";
 
 let isDeletePressed = false;
 const keydown = (e: KeyboardEvent) => e.key === "Backspace" && (isDeletePressed = true);
 const keyup = (e: KeyboardEvent) => e.key === "Backspace" && (isDeletePressed = false);
+
+const MANAGE_CHANNELS = 1n << 4n;
 
 export default definePlugin({
     name: "Message Actions",
@@ -47,8 +49,6 @@ export default definePlugin({
 
     start() {
         const MessageActions = findByPropsLazy("deleteMessage", "startEditMessage");
-        const PermissionStore = findByPropsLazy("can", "initialize");
-        const Permissions = findLazy(m => typeof m.MANAGE_MESSAGES === "bigint");
         const EditStore = findByPropsLazy("isEditing", "isEditingAny");
 
         document.addEventListener("keydown", keydown);
@@ -61,7 +61,7 @@ export default definePlugin({
                     MessageActions.startEditMessage(chan.id, msg.id, msg.content);
                     event.preventDefault();
                 }
-            } else if (Voltage.Settings.plugins["Message Actions"].enableDeleteOnClick && (isMe || PermissionStore.can(Permissions.MANAGE_MESSAGES, chan))) {
+            } else if (Voltage.Settings.plugins["Message Actions"].enableDeleteOnClick && (isMe || PermissionStore.can(MANAGE_CHANNELS, chan))) {
                 MessageActions.deleteMessage(chan.id, msg.id);
                 event.preventDefault();
             }

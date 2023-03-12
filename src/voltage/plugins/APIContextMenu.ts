@@ -16,57 +16,54 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+import { Settings } from "@api/Settings";
 import { Devs } from "@constants";
 import definePlugin from "@types";
+import { addListener, removeListener } from "@webpack";
 
-const nameMap = {
-    radio: "MenuRadioItem",
-    separator: "MenuSeparator",
-    checkbox: "MenuCheckboxItem",
-    groupstart: "MenuGroup",
+function listener(exports: any, id: number) {
+    if (!Settings.plugins["Context Menu API"].enabled) return removeListener(listener);
 
-    control: "MenuControlItem",
-    compositecontrol: "MenuControlItem",
+    if (typeof exports !== "object" || exports === null) return;
 
-    item: "MenuItem",
-    customitem: "MenuItem",
-};
+    for (const key in exports) if (key.length <= 3) {
+        const prop = exports[key];
+        if (typeof prop !== "function") continue;
+
+        const str = Function.prototype.toString.call(prop);
+        if (str.includes('path:["empty"]')) {
+            Voltage.Plugins.patches.push({
+                plugin: "Context Menu API",
+                all: true,
+                noWarn: true,
+                find: "navId:",
+                replacement: [{
+                    match: RegExp(`${id}(?<=(\\i)=.+?).+$`),
+                    replace: (code, varName) => {
+                        const regex = RegExp(`${key},{(?<=${varName}\\.${key},{)`, "g");
+                        return code.replace(regex, "$&contextMenuApiArguments:arguments,");
+                    }
+                }]
+            });
+
+            removeListener(listener);
+        }
+    }
+}
+
+addListener(listener);
 
 export default definePlugin({
     name: "Context Menu API",
-    description: "Deobfuscates Discord's Menu Item Module",
+    description: "API for adding/removing items to/from context menus.",
     authors: [Devs.Sappy],
-    required: true,
     patches: [
         {
-            find: '"Menu API',
+            find: "♫ (つ｡◕‿‿◕｡)つ ♪",
             replacement: {
-                match: /function.{0,80}type===(\i)\).{0,50}navigable:.+?Menu API/s,
-                replace: (m, mod) => {
-                    let nicenNames = "";
-                    const redefines = [] as string[];
-                    const typeCheckRe = /\(.{1,3}\.type===(.{1,5})\)/g;
-                    const pushTypeRe = /type:"(\w+)"/g;
-
-                    let typeMatch: RegExpExecArray | null;
-                    while ((typeMatch = typeCheckRe.exec(m)) !== null) {
-                        const item = typeMatch[1];
-                        pushTypeRe.lastIndex = typeCheckRe.lastIndex;
-                        const type = pushTypeRe.exec(m)?.[1];
-                        if (type && type in nameMap) {
-                            const name = nameMap[type];
-                            nicenNames += `Object.defineProperty(${item},"name",{value:"${name}"});`;
-                            redefines.push(`${name}:${item}`);
-                        }
-                    }
-                    if (redefines.length < 6) {
-                        console.warn("[Context Menu API] Expected to at least remap 6 items, only remapped", redefines.length);
-                    }
-
-                    return `${nicenNames}Object.assign(${mod},{${redefines.join(",")}});${m}`;
-                },
-            },
-        },
-    ],
+                match: /(?<=function \i\((\i)\){)(?=var \i,\i=\i\.navId)/,
+                replace: (_, props) => `Voltage.Api.ContextMenu._patchContextMenu(${props});`
+            }
+        }
+    ]
 });
-

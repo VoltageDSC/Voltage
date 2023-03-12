@@ -26,7 +26,7 @@ const { localStorage } = window;
 const listeners = {} as Record<string, Set<Function>>;
 
 const handlers = {
-    [IpcEvents.GET_REPO]: () => "https://codeberg.org/Voltage/Voltage",
+    [IpcEvents.GET_REPO]: () => "https://github.com/VoltageDSC/Voltage",
     [IpcEvents.GET_SETTINGS_DIR]: () => "LocalStorage",
 
     [IpcEvents.GET_CUSTOM_CSS]: () => DataStore.get("VoltageCustomCSS").then(s => s ?? ""),

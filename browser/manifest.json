@@ -4,7 +4,7 @@
     "name": "Voltage Web",
     "description": "A lightweight client mod focused on being better with themes now in your browser.",
     "author": "Slddev",
-    "homepage_url": "https://codeberg.org/Voltage/Voltage",
+    "homepage_url": "https://github.com/VoltageDSC/Voltage",
     "icons": {
         "128": "icon.png"
     },

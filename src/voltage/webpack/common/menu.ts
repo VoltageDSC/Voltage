@@ -24,7 +24,7 @@ import { filters, mapMangledModule, mapMangledModuleLazy } from "../webpack";
 import type * as t from "./types/menu";
 
 export const Menu: t.Menu = proxyLazy(() => {
-    const hasDeobfuscator = Voltage.Settings.plugins["Context Menu API"].enabled;
+    const hasDeobfuscator = Voltage.Settings.plugins["Menu Item Deobfuscator API"].enabled;
     const menuItems = ["MenuSeparator", "MenuGroup", "MenuItem", "MenuCheckboxItem", "MenuRadioItem", "MenuControlItem"];
 
     const map = mapMangledModule("♫ ⊂(｡◕‿‿◕｡⊂) ♪", {
@@ -49,4 +49,3 @@ export const ContextMenu: t.ContextMenuApi = mapMangledModuleLazy('type:"CONTEXT
     openLazy: m => m.toString().length < 50,
     close: filters.byCode("CONTEXT_MENU_CLOSE")
 });
-

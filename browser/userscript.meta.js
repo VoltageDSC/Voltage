@@ -2,9 +2,9 @@
 // @name            Voltage
 // @description     A lightweight client mod focused on being better with themes.
 // @version         %version%
-// @author          Slddev (https://codeberg.org/Slddev)
-// @namespace       https://codeberg.org/Voltage/Voltage
-// @supportURL      https://codeberg.org/Voltage/Voltage
+// @author          Slddev (https://github.com/Slddev)
+// @namespace       https://github.com/VoltageDSC/Voltage
+// @supportURL      https://github.com/VoltageDSC/Voltage
 // @license         GPL-3.0
 // @match           *://*.discord.com/*
 // @grant           GM_xmlhttpRequest

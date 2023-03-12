@@ -23,7 +23,6 @@ export default definePlugin({
     name: "No System Badge",
     description: "Hides the badge that appears on the taskbar icon.",
     authors: [Devs.Sappy],
-    target: "DESKTOP",
     patches: [
         {
             find: "setSystemTrayApplications:function",

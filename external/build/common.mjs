@@ -33,6 +33,8 @@ export const banner = {
 `.trim()
 };
 
+const isWeb = process.argv.slice(0, 2).some(f => f.endsWith("buildWeb.mjs"));
+
 /**
  * @type {import("esbuild").Plugin}
  */
@@ -68,8 +70,13 @@ export const globPlugins = {
                 const files = await readdir(`./src/voltage/${dir}`);
                 for (const file of files) {
                     if (file.startsWith(".")) continue;
-                    if (file === "index.ts") {
-                        continue;
+                    if (file === "index.ts") continue;
+                    const fileBits = file.split(".");
+                    if (fileBits.length > 2 && ["ts", "tsx"].includes(fileBits.at(-1))) {
+                        const mod = fileBits.at(-2);
+                        if (mod === "dev" && !watch) continue;
+                        if (mod === "web" && !isWeb) continue;
+                        if (mod === "desktop" && isWeb) continue;
                     }
                     const mod = `p${i}`;
                     code += `import ${mod} from "./${dir}/${file.replace(/.tsx?$/, "")}";\n`;

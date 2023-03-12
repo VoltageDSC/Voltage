@@ -110,7 +110,7 @@ function Settings() {
                                 Open Settings Folder
                             </Button>
                             <Button
-                                onClick={() => VoltageNative.ipc.invoke(IpcEvents.OPEN_EXTERNAL, "https://codeberg.org/Voltage/Voltage")}
+                                onClick={() => VoltageNative.ipc.invoke(IpcEvents.OPEN_EXTERNAL, "https://github.com/VoltageDSC/Voltage")}
                                 size={Button.Sizes.SMALL}
                                 disabled={settingsDirPending}>
                                 Open Repository

@@ -34,7 +34,7 @@ export default new class ViewIcons implements PluginDef {
     name = "View Icons";
     authors = [Devs.Sappy];
     description = "Makes Avatars/Banners in user profiles clickable, and adds Guild Context Menu Entries to View Banner/Icon.";
-    dependencies = ["Context Menu API"];
+    dependencies = ["Menu Item Deobfuscator API"];
 
     openImage(url: string) {
         const u = new URL(url);

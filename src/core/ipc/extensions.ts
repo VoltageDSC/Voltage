@@ -69,7 +69,7 @@ export async function installExt(id: string) {
             : `https://clients2.google.com/service/update2/crx?response=redirect&acceptformat=crx2,crx3&x=id%3D${id}%26uc&prodversion=32`;
         const buf = await get(url, {
             headers: {
-                "User-Agent": "Voltage (https://codeberg.org/Voltage/Voltage)"
+                "User-Agent": "Voltage (https://github.com/VoltageDSC/Voltage)"
             }
         });
         await extract(crxToZip(buf), extDir).catch(console.error);

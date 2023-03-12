@@ -37,7 +37,7 @@ export default definePlugin({
     name: "Spotify Controls",
     description: "Adds a Control Panel while Listening to Spotify.",
     authors: [Devs.Sappy],
-    dependencies: ["Context Menu API"],
+    dependencies: ["Menu Item Deobfuscator API"],
     options: {
         hoverControls: {
             description: "Show controls on hover",

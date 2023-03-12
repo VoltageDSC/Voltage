@@ -9,7 +9,7 @@
 ## Features
 
 -   **Easy to Install**
--   **Many Plugins built in:** [View List](https://codeberg.org/Voltage/Voltage/wiki/Plugins-List)
+-   **Many Plugins built in:** [View List](https://github.com/VoltageDSC/Voltage/wiki/Plugins-List)
     -   **Highlights:** Spotify Controls, Experiments, No Track, Show Hidden Channels
 -   **Excellent Browser Support:** Run Voltage in your Browser via extension or UserScript
 -   **Custom CSS:** Inbuilt css editor with support to import any css file or code.
@@ -18,26 +18,26 @@
 
 ## Installing / Uninstalling
 
-Follow the instructions in the [Installation Guide!](https://codeberg.org/Voltage/Voltage/wiki/Installation-Guide)
+Follow the instructions in the [Installation Guide!](https://github.com/VoltageDSC/Voltage/wiki/Installation-Guide)
 
 ## Installing on Browser
 
-- [Chrome](https://codeberg.org/Voltage/Voltage/releases/latest/download/Voltage-Chromium.zip)
-- [UserScript](https://codeberg.org/Voltage/Voltage/releases/latest/download/Voltage.user.js)
+- [Chrome](https://github.com/VoltageDSC/Voltage/releases/latest/download/Voltage-Chromium.zip)
+- [UserScript](https://github.com/VoltageDSC/Voltage/releases/latest/download/Voltage.user.js)
 
 > **Note:** Custom CSS, Shiki and other plugins making use of external resources will not work with the UserScript.
 
 ## Building from Source
 
-Visit the project [wiki](https://codeberg.org/Voltage/Voltage/wiki) for information on how to build from source.
+Visit the project [wiki](https://github.com/VoltageDSC/Voltage/wiki) for information on how to build from source.
 
 ## Contributing
 
-See [Contributing](https://codeberg.org/Voltage/Voltage/src/branch/main/.gitea/contributing.md) and the [Plugin Guide!](https://codeberg.org/Voltage/Voltage/wiki/Plugins-Guide)
+See [Contributing](https://github.com/VoltageDSC/Voltage/src/branch/main/.gitea/contributing.md) and the [Plugin Guide!](https://github.com/VoltageDSC/Voltage/wiki/Plugins-Guide)
 
 ## Support
 
-- [Codeberg Issues](https://codeberg.org/Voltage/Voltage/issues)
+- [Codeberg Issues](https://github.com/VoltageDSC/Voltage/issues)
 - [Discord Server](https://discord.gg/4NfTZPUCMT)
 
 ## License

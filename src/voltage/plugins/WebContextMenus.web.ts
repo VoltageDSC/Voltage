@@ -23,7 +23,7 @@ export default definePlugin({
     name: "Web Context Menus",
     description: "Adds missing context menu items on the Web Version of Discord",
     authors: [Devs.Sappy],
-    target: "WEB",
+    enabledByDefault: true,
 
     patches: [{
         // There is literally no reason for Discord to make this Desktop only.

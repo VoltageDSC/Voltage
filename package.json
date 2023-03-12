@@ -4,13 +4,13 @@
     "version": "1.1.0",
     "description": "A lightweight client mod focused on being better with themes.",
     "keywords": [],
-    "homepage": "https://codeberg.org/Voltage/Voltage#readme",
+    "homepage": "https://github.com/VoltageDSC/Voltage#readme",
     "bugs": {
-        "url": "https://codeberg.org/Voltage/Voltage/issues"
+        "url": "https://github.com/VoltageDSC/Voltage/issues"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://codeberg.org/Voltage/Voltage.git"
+        "url": "git+https://github.com/VoltageDSC/Voltage.git"
     },
     "license": "AGPL-3.0-or-later",
     "author": "Sappy",

@@ -42,16 +42,23 @@ const nodeCommonOpts = {
     define: defines,
 };
 
+const sourceMapFooter = s => watch ? "" : `//# sourceMappingURL=voltage://${s}.js.map`;
+const sourcemap = watch ? "inline" : "external";
+
 await Promise.all([
     esbuild.build({
         ...nodeCommonOpts,
         entryPoints: ["src/core/preload/preload.ts"],
         outfile: "dist/preload.js",
+        footer: { js: "//# sourceURL=VoltagePreload\n" + sourceMapFooter("preload") },
+        sourcemap,
     }),
     esbuild.build({
         ...nodeCommonOpts,
         entryPoints: ["src/core/patcher/patcher.ts"],
         outfile: "dist/patcher.js",
+        footer: { js: "//# sourceURL=VoltagePatcher\n" + sourceMapFooter("patcher") },
+        sourcemap,
     }),
     esbuild.build({
         ...commonOpts,
@@ -59,7 +66,9 @@ await Promise.all([
         outfile: "dist/renderer.js",
         format: "iife",
         target: ["esnext"],
+        footer: { js: "//# sourceURL=VoltageRenderer\n" + sourceMapFooter("renderer") },
         globalName: "Voltage",
+        sourcemap,
         plugins: [
             globPlugins,
             ...commonOpts.plugins

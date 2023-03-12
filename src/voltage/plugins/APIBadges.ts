@@ -36,7 +36,7 @@ const DeveloperBadge: ProfileBadge = {
         }
     },
     shouldShow: ({ user }) => DeveloperIDs.includes(user.id),
-    onClick: () => VoltageNative.ipc.invoke(IpcEvents.OPEN_EXTERNAL, "https://codeberg.org/Voltage/Voltage")
+    onClick: () => VoltageNative.ipc.invoke(IpcEvents.OPEN_EXTERNAL, "https://github.com/VoltageDSC/Voltage")
 };
 
 export default definePlugin({

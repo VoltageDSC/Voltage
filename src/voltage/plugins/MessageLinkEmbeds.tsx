@@ -330,10 +330,10 @@ function AutomodEmbedAccessory(props: MessageEmbedProps): JSX.Element | null {
 }
 
 export default definePlugin({
-    name: "MessageLinkEmbeds",
+    name: "Message Link Embeds",
     description: "Adds a preview to messages that link another message",
     authors: [Devs.Sappy],
-    dependencies: ["MessageAccessoriesAPI"],
+    dependencies: ["Message Accessories API"],
     patches: [
         {
             find: ".embedCard",
